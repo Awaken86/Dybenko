@@ -1,13 +1,17 @@
-import './App.css';
-import Karysel from './Components/Karysel/Karysel';
+import HomePage from './Components/HomePage/HomePage';
 import NavBar from './Components/NavBar/NavBar';
+import React from 'react';
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
     return (
-        <>
+        <div>
             <NavBar />
-            <Karysel />
-        </>
+            <Routes>
+                <Route path="" element={<HomePage />} />
+            </Routes>
+        </div>
+
     );
 }
 

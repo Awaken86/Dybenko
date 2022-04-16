@@ -1,0 +1,6 @@
+.li{
+    color: rgb(189, 189, 189);
+}
+.li:hover{
+    color: rgb(255, 255, 255);
+}
