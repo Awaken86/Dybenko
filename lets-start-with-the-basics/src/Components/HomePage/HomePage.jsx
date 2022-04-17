@@ -12,7 +12,7 @@ const HomePage = () => {
             <Container style={{ backgroudColor: '#fff', marginTop: '50px', marginBottom: '30px' }}>
                 <Row>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" style={{ width: '18rem', height:'300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
                             <Card.Body>
                                 <Card.Title>Доставка</Card.Title>
                                 <ul className="list-unstyled">
@@ -25,12 +25,12 @@ const HomePage = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" style={{ width: '18rem', height:'300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
                             <Card.Body>
                                 <Card.Title>О нас</Card.Title>
                                 <ul className="list-unstyled">
                                     <li> <Nav.Link className={style.li} href="#"> Вакансии</Nav.Link></li>
-                                    <li> <Nav.Link className={style.li} href="#"> Сертификаты ScamMarket</Nav.Link></li>
+                                    <li> <Nav.Link className={style.li} href="#"> Сертификаты Shota u Ashota</Nav.Link></li>
                                     <li> <Nav.Link className={style.li} href="#"> Стать спонсором</Nav.Link></li>
                                     <li> <Nav.Link className={style.li} href="#"> Условия оферы</Nav.Link></li>
                                 </ul>
@@ -38,7 +38,7 @@ const HomePage = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" style={{ width: '18rem', height:'300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
                             <Card.Body>
                                 <Card.Title>Обратная связь</Card.Title>
                                 <ul className="list-unstyled">
