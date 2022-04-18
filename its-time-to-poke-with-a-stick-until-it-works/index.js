@@ -1,5 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import Post from './Post.js';
+
 
 const PORT = 5000;
 const DB_URL = `mongodb+srv://user:user@cluster0.1okoj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
