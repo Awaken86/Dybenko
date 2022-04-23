@@ -4,6 +4,7 @@ import { BrowserRouter} from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactZitraksMode from './ReactZitraksMode';
+import store from './redux/reduxStore';
 
 
 
@@ -13,7 +14,7 @@ const root = createRoot(container);
 root.render(
 
     <BrowserRouter>
-        <ReactZitraksMode />
+        <ReactZitraksMode store={store}/>
     </BrowserRouter>
 
 );

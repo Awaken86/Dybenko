@@ -39,7 +39,7 @@ const NavBar = () => {
                             </Button>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title style={{ marginRight: "40px" }}> {registr ? <div>Регистрация</div> : <div> Вход</div>}</Modal.Title>
+                                    <Modal.Title style={{ marginRight: "40px" }}> {registr ? <div>Регистрация</div> : <div>Вход</div>}</Modal.Title>
                                     {registr ? <Button variant="dark" onClick={() => { setRegistr(false) }}>Войти</Button>
                                         : <Button variant="dark" onClick={() => { setRegistr(true) }}>Регистрация</Button>}
                                 </Modal.Header>

@@ -1,4 +1,4 @@
-import Post from "./Post.js";
+import Post from "../Schema/Post.js";
 import FileService from "./FileService.js";
 
 
