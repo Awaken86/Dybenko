@@ -1,38 +1,37 @@
-import { productAPI } from '../api/api'
+import { productAPI } from "../api/api";
 
-const SET_USERS = 'SET_USERS';
-
+const SET_PODUCT = 'SET_PODUCT';
 
 let initialState = {
-    users: [],
-    pageSize: 5,
-    totalUsersCount: 20,
-    currentPage: 1,
-    isLoading: false,
-    followingInProgress: [],
-    portionSize: 15
+    product: []
 
 };
 
 
-const productReducer = (state = initialState, action) => {
+
+
+const ProductReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USERS:
-            return {
+        case SET_PODUCT:
+            
+        return {
                 ...state,
-                users: action.users
+                product: action.product
+                
             }
         default:
             return state;
+            
     }
 }
-export const setUsers = (users) => ({ type: SET_USERS, users })
 
-export const getUsers = (currentPage, pageSize) => {
+export const setProduct = (product) => ({ type: SET_PODUCT, product })
+
+export const getProduct = () => {
     return async (dispatch) => {
-        let data = await productAPI.getUsers(currentPage, pageSize)
-        dispatch(setUsers(data.items));
+        let data = await productAPI.getProduct()
+        dispatch(setProduct(data));
     };
 }
 
-export default productReducer;
+export default ProductReducer;

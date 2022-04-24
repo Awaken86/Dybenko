@@ -5,7 +5,7 @@ import productReducer from "./product-redures";
 
 
 let reducers = combineReducers({
-    ProductList: productReducer
+    ProductPage: productReducer
 
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
