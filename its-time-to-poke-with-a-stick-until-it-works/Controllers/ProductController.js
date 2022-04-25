@@ -11,7 +11,7 @@ class ProductController {
             res.status(500).json(e)
         }
     }
-    async getAll(req, res) {
+    async getAll(req, res, type) {
         try {
             const products = await ProductService.getAll();
             return res.json(products);

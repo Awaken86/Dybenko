@@ -10,5 +10,8 @@ export const productAPI = {
                 return response.data;
             });
             
+    },
+    getProductByType(type) {
+        return axios.get(`http://localhost:3001/api/product?type=${type}`)
     }
 }
