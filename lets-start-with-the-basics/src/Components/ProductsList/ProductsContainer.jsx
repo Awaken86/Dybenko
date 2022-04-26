@@ -10,7 +10,11 @@ class ProductContainer extends React.Component {
     componentDidMount() {
         this.props.getProduct(this.props.type);
     }
-
+    componentDidUpdate(prevProps) {
+        if (prevProps.type !== this.props.type) {
+            this.props.getProduct(this.props.type)
+        }
+    }
 
     onPageChanged = () => {
 
