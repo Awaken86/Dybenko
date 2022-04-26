@@ -8,8 +8,8 @@ class ProductService {
         const createdProduct = await Product.create({ ...product, picture: fileName})
         return createdProduct
     }
-    async getAll() {
-        const products = await Product.find();
+    async getAll(data) {
+        const products = await Product.find({type:data.type})
         return products;
     }
     async getOne(id) {

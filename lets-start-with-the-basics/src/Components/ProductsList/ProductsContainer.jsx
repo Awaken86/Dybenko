@@ -8,13 +8,13 @@ import { compose } from 'redux';
 
 class ProductContainer extends React.Component {
     componentDidMount() {
-        this.props.getProduct();
+        this.props.getProduct(this.props.type);
     }
 
 
     onPageChanged = () => {
 
-        this.props.getProduct();
+        this.props.getProduct(this.props.type);
 
     }
 

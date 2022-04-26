@@ -27,9 +27,9 @@ const ProductReducer = (state = initialState, action) => {
 
 export const setProduct = (product) => ({ type: SET_PODUCT, product })
 
-export const getProduct = () => {
+export const getProduct = (type) => {
     return async (dispatch) => {
-        let data = await productAPI.getProduct()
+        let data = await productAPI.getProduct(type)
         dispatch(setProduct(data));
     };
 }
