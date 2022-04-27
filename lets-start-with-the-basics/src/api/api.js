@@ -10,5 +10,9 @@ export const productAPI = {
                 return response.data;
             });
             
+    },
+    getOneProduct(productId) {
+        return instance.get(`product/` + productId);
+
     }
 }

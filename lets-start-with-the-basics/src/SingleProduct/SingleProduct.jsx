@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button, Card, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import style from './ProductsList.module.css';
-
-const ProductsList = (props) => {
+import style from './SingleProduct.module.css';
+const SingleProduct = (props) => {
 
     return (
         <Container className={style.Container}>
@@ -29,4 +28,4 @@ const ProductsList = (props) => {
 }
 debugger
 
-export default ProductsList;
+export default SingleProduct;
