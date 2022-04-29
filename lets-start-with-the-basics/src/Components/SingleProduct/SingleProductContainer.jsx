@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import SingleProduct from './SingleProduct';
-import { getOneProduct } from '../../redux/product-redures';
+import {getOneProduct} from '../../redux/product-redures'
 
 class SingleProductContainer extends React.Component {
     componentDidMount() {
@@ -18,11 +18,12 @@ class SingleProductContainer extends React.Component {
             <SingleProduct selectedItem={this.props.selectedItem} />
         </div>
     }
+    
 }
 
 let mapStateToProps = (state) => {
     return {
-        product: state.ProductPage.product
+        selectedItem: state.ProductPage.selectedItem
     }
 }
 

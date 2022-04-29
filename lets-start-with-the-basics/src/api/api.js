@@ -9,10 +9,13 @@ export const productAPI = {
             .then(response => {
                 return response.data;
             });
-            
-    },
-    getOneProduct(productId) {
-        return instance.get(`product/` + productId);
 
+    },
+    getOneProduct(url) {
+        return instance.get(url)
+            .then(response => {
+                debugger
+                return response.data;
+            });
     }
 }

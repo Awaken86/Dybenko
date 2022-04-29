@@ -1,11 +1,11 @@
 import { productAPI } from "../api/api";
 
-const SET_PRODUCT = 'SET_PODUCT';
-const SET_ONE_PRODUCT= 'SET_ONE_PODUCT'
+const SET_PRODUCT = 'SET_PRODUCT';
+const SET_ONE_PRODUCT= 'SET_ONE_PRODUCT'
 
 let initialState = {
     product: [],
-    selectedItem: {}
+    selectedItem: []
 };
 
 
@@ -20,10 +20,12 @@ const ProductReducer = (state = initialState, action) => {
 
             }
         case SET_ONE_PRODUCT: {
+            
             return {
                 ...state,
-                selectedItem: action.data
+                selectedItem: action.oneProduct
             }
+            
         }
         default:
             return state;
@@ -32,7 +34,7 @@ const ProductReducer = (state = initialState, action) => {
 }
 
 export const setProduct = (product) => ({ type: SET_PRODUCT, product })
-export const setOneProduct = (data) => ({ type: SET_PRODUCT, data })
+export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
 
 export const getProduct = (type) => {
     return async (dispatch) => {
@@ -40,9 +42,10 @@ export const getProduct = (type) => {
         dispatch(setProduct(data));
     };
 }
-export const getOneProduct = (productId) => {
+export const getOneProduct = (url) => {
+    debugger
     return async (dispatch) => {
-        let data = await productAPI.getOneProduct(productId)
+        let data = await productAPI.getOneProduct(url)
         dispatch(setOneProduct(data));
     };
 }

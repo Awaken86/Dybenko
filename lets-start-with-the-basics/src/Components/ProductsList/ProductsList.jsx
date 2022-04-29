@@ -10,7 +10,7 @@ const ProductsList = (props) => {
             {
 
                 props.product.map(p => <Card style={{ width: '18rem', marginTop: '50px' }} key={p._id}>
-                    <Nav as={Link} to={`/products/${p._id}`}>
+                    <Nav as={Link} to={`/product/${p._id}`}>
                         <Card.Img variant="top" src={"http://localhost:3001/" + p.picture} />
                     </Nav>
                     <Card.Body>
@@ -27,6 +27,5 @@ const ProductsList = (props) => {
     )
     
 }
-debugger
 
 export default ProductsList;
