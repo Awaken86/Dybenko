@@ -13,7 +13,6 @@ class ProductService {
         return products;
     }
     async getOne(id) {
-        debugger
         if (!id) {
             throw new Error('нет Id')
         }

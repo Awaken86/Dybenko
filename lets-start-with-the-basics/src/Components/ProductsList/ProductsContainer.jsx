@@ -16,21 +16,15 @@ class ProductContainer extends React.Component {
         }
     }
 
-    onPageChanged = () => {
-
-        this.props.getProduct(this.props.type);
-
-    }
 
 
     render() {
         return <div>
-            {this.props.product ? <div>wait</div> : null}
             <ProductsList
-                onPageChanged={this.onPageChanged}
                 product={this.props.product}
             />
             
+
         </div>
     }
 }

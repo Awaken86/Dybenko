@@ -1,0 +1,26 @@
+.Container{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 20px;
+    
+}
+span{
+    color: #fff;
+    font-size: 18px;
+}
+.price{
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.button{
+    margin: 20px;
+}
+h5{
+    font-size: 30px;
+    color: #fff;
+}

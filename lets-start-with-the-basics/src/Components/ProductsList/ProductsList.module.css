@@ -4,3 +4,12 @@
     padding-top: 50px;
     flex-wrap: wrap;
 }
+.NavContainer{
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 150px;
+}
+.NavColorContainer{
+    height: 100px;
+}

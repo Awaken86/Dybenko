@@ -21,9 +21,7 @@ class ProductController {
     }
     async getOne(req, res) {
         try {
-            debugger
             const product = await ProductService.getOne(req.params.id);
-            debugger
             return res.json(product)
         } catch (e) {
             res.status(500).json(e)

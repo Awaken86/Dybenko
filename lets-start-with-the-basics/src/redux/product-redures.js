@@ -43,7 +43,6 @@ export const getProduct = (type) => {
     };
 }
 export const getOneProduct = (url) => {
-    debugger
     return async (dispatch) => {
         let data = await productAPI.getOneProduct(url)
         dispatch(setOneProduct(data));

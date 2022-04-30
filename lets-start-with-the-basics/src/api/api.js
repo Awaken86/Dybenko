@@ -14,7 +14,6 @@ export const productAPI = {
     getOneProduct(url) {
         return instance.get(url)
             .then(response => {
-                debugger
                 return response.data;
             });
     }
