@@ -12,7 +12,7 @@ const SingleProduct = (props) => {
                 <Col sm={12} xxl={8} lg={7} md={6}>
                     <div className={style.title}><span className={style.title}>{title}</span></div>
                     <div className={style.price}>{price}₽<Button className={style.button} variant="dark">В корзину</Button></div>
-                    <h5>Описание</h5>
+                    <h5>Описание:</h5>
                     <span className={style.description}>{description}</span>
                 </Col>
             </Row>

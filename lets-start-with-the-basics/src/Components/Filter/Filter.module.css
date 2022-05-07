@@ -1,0 +1,10 @@
+
+.NavContainer {
+    display: flex;
+    height: 100%;
+    width: 150px;
+}
+
+.NavColorContainer {
+    height: 100%;
+}

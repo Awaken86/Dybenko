@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
 import { CgPhone } from 'react-icons/cg';
 import { GrYoutube } from "react-icons/gr";
+
 import style from './Footer.module.css'
 const Footer = () => {
     return (
@@ -38,14 +39,14 @@ const Footer = () => {
                         <Card border="light" style={{ width: '18rem', height: '300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
                             <Card.Body>
                                 <Card.Title>Обратная связь</Card.Title>
-                                <ul className="list-unstyled">
-                                    <li > <Nav.Link className={style.li} href="#"> Ответы на часто задаваемые вопросы</Nav.Link></li>
+                                <Nav as='ul' className="list-unstyled">
+                                    <Nav as='li' > <Nav.Link className={style.li} href="#"> Ответы на часто задаваемые вопросы</Nav.Link></Nav>
                                     <li> <Nav.Link className={style.li} href="#"> Служба поддержки</Nav.Link></li>
                                     <li> <Nav.Link className={style.li} href="tel:+79775415100"> <CgPhone size={20} /> +7-977-541-51-00</Nav.Link></li>
                                     <li> <Nav.Link className={style.li} href="https://www.youtube.com/watch?v=fp5-XQFr_nk&t=0s&ab_channel=%D0%A5%D0%B0%D1%83%D0%B4%D0%B8%D0%A5%D0%BE%E2%84%A2-%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BE%D0%BC%D0%B8%D1%80%D0%B5IT%21">
                                         <GrYoutube size={20} /> YouTube</Nav.Link></li>
                                     <li> <Nav.Link className={style.li} href="#"> FAQ</Nav.Link></li>
-                                </ul>
+                                </Nav>
                             </Card.Body>
                         </Card>
                     </Col>

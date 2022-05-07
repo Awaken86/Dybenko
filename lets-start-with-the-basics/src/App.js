@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import ProductsContainer from './Components/ProductsList/ProductsContainer';
 import SingleProductContainer from './Components/SingleProduct/SingleProductContainer';
 import Footer from './Footer/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import style from './App.module.css'
 
 const App = () => {

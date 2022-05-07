@@ -1,41 +1,28 @@
 import React from 'react';
-import { Button, Card, Container, Form, Nav } from 'react-bootstrap';
+import { Button, Card, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import style from './ProductsList.module.css';
+import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
+import ReactAudioPlayer from 'react-audio-player';
+import Filter from '../Filter/Filter';
 
 const ProductsList = (props) => {
-
     return (
         <>
-            <Nav className={style.NavContainer}>
-
-                <Nav className={style.NavColorContainer}>
-                    <Nav>
-                        <Button onClick={""} style={{ width: '30px', height: '30px' }} variant="dark" />
-                        <Button style={{ width: '30px', height: '30px' }} variant="light" />
-                        <Button style={{ width: '30px', height: '30px' }} variant="danger" />
-                    </Nav>
-                    <Button style={{ width: '100px', height: '60px' }} variant="secondary">Sort</Button>
-                    <Nav>
-                        <Form.Label>Range</Form.Label>
-                        <Form.Range />
-                    </Nav>
-                </Nav>
-            </Nav>
-
-
-
             <Container className={style.Container}>
+            <Filter/>
+                
+                {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
+
                 {
-                    props.product.map(p => <Card style={{ width: '18rem', marginTop: '50px' }} key={p._id}>
+                    props.product.map(p => <Card style={{ width: '18rem', marginTop: '50px', margin: "auto" }} key={p._id}>
                         <Nav as={Link} to={`/product/${p._id}`}>
-                            <Card.Img variant="top" src={"http://localhost:3001/" + p.picture} />
+                            <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + p.picture} />
                         </Nav>
                         <Card.Body>
-                            <Card.Title>{p.title}</Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
+                            <Card.Title className={style.title}>{p.title}</Card.Title>
+                            <Card.Text className={style.title}>
+                                {p.description}
                             </Card.Text>
                             <Button variant="primary">{p.price}p</Button>
                         </Card.Body>
@@ -50,3 +37,4 @@ const ProductsList = (props) => {
 }
 
 export default ProductsList;
+
