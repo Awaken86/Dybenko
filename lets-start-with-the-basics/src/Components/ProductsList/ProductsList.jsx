@@ -15,7 +15,7 @@ const ProductsList = (props) => {
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
-                    props.product.map(p => <Card style={{ width: '18rem', marginTop: '50px', margin: "auto" }} key={p._id}>
+                    props.product.map(p => <Card className={style.card} key={p._id}>
                         <Nav as={Link} to={`/product/${p._id}`}>
                             <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + p.picture} />
                         </Nav>
@@ -24,7 +24,7 @@ const ProductsList = (props) => {
                             <Card.Text className={style.title}>
                                 {p.description}
                             </Card.Text>
-                            <Button variant="primary">{p.price}p</Button>
+                            <Button as={Link} to={`/product/${p._id}`} variant="primary">{p.price}p</Button>
                         </Card.Body>
                     </Card>)
                 }

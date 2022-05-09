@@ -27,3 +27,8 @@
     line-height: 1.3em;
     height: 3.9em;
 }
+.card{
+    width: 18rem; 
+    margin: auto;
+    margin-bottom: 30px;
+}

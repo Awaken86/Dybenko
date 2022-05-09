@@ -1,6 +1,15 @@
-.li{
+.li {
     color: rgb(189, 189, 189) !important;
 }
-.li:hover{
+
+.li:hover {
     color: rgb(255, 255, 255) !important;
+}
+
+.card {
+    width: 18rem;
+    height: 300px;
+    margin-bottom: 30px;
+    margin: auto;
+    color: #fff;
 }

@@ -2,15 +2,16 @@ import React from 'react';
 import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
 import { CgPhone } from 'react-icons/cg';
 import { GrYoutube } from "react-icons/gr";
-
 import style from './Footer.module.css'
+
+
 const Footer = () => {
     return (
-        <Nav className={style.footer}>
-            <Container style={{ backgroudColor: '#fff', marginTop: '50px', marginBottom: '30px' }}>
+        <Nav >
+            <Container  style={{ backgroudColor: '#fff', marginTop: '50px', marginBottom: '30px' }}>
                 <Row>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', height: '300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" className={style.card} style={{backgroundColor: "#343B41"}}>
                             <Card.Body>
                                 <Card.Title>Доставка</Card.Title>
                                 <ul className="list-unstyled">
@@ -23,7 +24,7 @@ const Footer = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', height: '300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" className={style.card} style={{backgroundColor: "#343B41"}}>
                             <Card.Body>
                                 <Card.Title>О нас</Card.Title>
                                 <ul className="list-unstyled">
@@ -36,7 +37,7 @@ const Footer = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card border="light" style={{ width: '18rem', height: '300px', margin: "auto", backgroundColor: "#343B41", color: "#fff" }}>
+                        <Card border="light" className={style.card} style={{backgroundColor: "#343B41"}}>
                             <Card.Body>
                                 <Card.Title>Обратная связь</Card.Title>
                                 <Nav as='ul' className="list-unstyled">
