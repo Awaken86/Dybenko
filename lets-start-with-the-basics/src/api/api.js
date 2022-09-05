@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 export const productAPI = {
     getProduct(type) {
-        return instance.get(`/product?type=${type}&`)
+        return instance.get(`/product?type=${type}&color?`)
             .then(response => {
                 return response.data;
             });

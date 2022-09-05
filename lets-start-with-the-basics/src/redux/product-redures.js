@@ -1,11 +1,13 @@
 import { productAPI } from "../api/api";
 
 const SET_PRODUCT = 'SET_PRODUCT';
-const SET_ONE_PRODUCT= 'SET_ONE_PRODUCT'
+const SET_ONE_PRODUCT = 'SET_ONE_PRODUCT'
+const SET_COLOR_FILTER = 'SET_COLOR_FILTER'
 
 let initialState = {
     product: [],
-    selectedItem: []
+    selectedItem: [],
+    colorProduct: ''
 };
 
 
@@ -20,12 +22,20 @@ const ProductReducer = (state = initialState, action) => {
 
             }
         case SET_ONE_PRODUCT: {
-            
+
             return {
                 ...state,
                 selectedItem: action.oneProduct
             }
-            
+
+        }
+        case SET_COLOR_FILTER: {
+
+            return {
+                ...state,
+                colorProduct: action.colorProduct
+            }
+
         }
         default:
             return state;
@@ -35,13 +45,21 @@ const ProductReducer = (state = initialState, action) => {
 
 export const setProduct = (product) => ({ type: SET_PRODUCT, product })
 export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
+export const setColorFilter = (color) => ({ type: SET_COLOR_FILTER, color })
 
 export const getProduct = (type) => {
     return async (dispatch) => {
-        let data = await productAPI.getProduct(type)
-        dispatch(setProduct(data));
+
+        if (initialState.colorProduct !== "withoutFilter") {
+            let data = await productAPI.getProduct(type)
+            dispatch(setProduct(data));
+        } else {
+            let data = await productAPI.getProduct(type, initialState.colorProduct)
+            dispatch(setProduct(data));
+        }
     };
 }
+
 export const getOneProduct = (url) => {
     return async (dispatch) => {
         let data = await productAPI.getOneProduct(url)

@@ -41,7 +41,8 @@ let mapStateToProps = (state) => {
 }*/
 let mapStateToProps = (state) => {
     return {
-        product: state.ProductPage.product
+        product: state.ProductPage.product,
+        colorProduct: state.ProductPage.colorProduct
     }
 }
 

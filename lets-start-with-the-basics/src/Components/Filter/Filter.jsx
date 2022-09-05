@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Card, Nav } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { setColorFilter } from '../../redux/product-redures';
 import style from './Filter.module.css';
 
 const Filter = () => {
-
-    const [color, setColor] = useState('')
+    const [color, setColor] = useState('withoutFilter')
     let colorArray = ['red', 'white', 'black']
-
+    const dispatch = useDispatch()
+    let setFilterHandler = () => {
+        dispatch(setColorFilter(color))
+    }
 
     return (
         <Nav className={style.NavContainer}>
             <Card >
                 <Card.Body>
                     Selected:{color}
-                    <Nav>{colorArray.map((i) => <SelectButton setColor={setColor} color={i} />) }</Nav>
-                    <Button variant='dark'>Фильтр</Button>
+                    <Nav>{colorArray.map((i) => <SelectButton key={i} setColor={setColor} color={i} />)}</Nav>
+                    <Button variant='dark' onClick={setFilterHandler}>Фильтр</Button>
+                    <Button variant='dark' onClick={() => { setColor('withoutFilter') }}>Очистить фильтр</Button>
                 </Card.Body>
             </Card>
         </Nav>
