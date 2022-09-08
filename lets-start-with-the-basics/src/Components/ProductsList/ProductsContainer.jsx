@@ -17,11 +17,12 @@ class ProductContainer extends React.Component {
     }
 
 
-
+    
     render() {
         return <div>
             <ProductsList
                 product={this.props.product}
+                type={this.props.type}
             />
             
 
@@ -52,3 +53,4 @@ export default compose(
         getProduct
     })
 )(ProductContainer)
+

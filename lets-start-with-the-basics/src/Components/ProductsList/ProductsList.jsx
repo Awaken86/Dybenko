@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import style from './ProductsList.module.css';
 import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
 import ReactAudioPlayer from 'react-audio-player';
 import Filter from '../Filter/Filter';
+import { useDispatch, useSelector } from 'react-redux';
+import { getActualType, getProduct } from '../../redux/product-redures';
 
 const ProductsList = (props) => {
+    const dispatch = useDispatch()
+    const actyalType = useSelector(getActualType)
+    useEffect(() => {
+        getProduct(props.type)
+    }, [])
+    useEffect(() => {
+        if (props.type !== props.type) {
+            getProduct(props.type)
+        }
+    }, [actyalType])
+    //зависемость от type
     return (
         <>
             <Container className={style.Container}>
-            <Filter/>
-                
+                <Filter />
+
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
