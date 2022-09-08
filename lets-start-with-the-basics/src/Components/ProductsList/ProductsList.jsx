@@ -6,18 +6,17 @@ import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
 import ReactAudioPlayer from 'react-audio-player';
 import Filter from '../Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getActualType, getProduct } from '../../redux/product-redures';
+import { getProduct } from '../../redux/product-redures';
 
 const ProductsList = (props) => {
     const dispatch = useDispatch()
-    const actyalType = useSelector(getActualType)
+    const actyalType = props.type
+    const product = useSelector((state) => state.ProductPage.product)
     useEffect(() => {
-        getProduct(props.type)
+        dispatch(getProduct(actyalType))
     }, [])
     useEffect(() => {
-        if (props.type !== props.type) {
-            getProduct(props.type)
-        }
+        dispatch(getProduct(actyalType))
     }, [actyalType])
     //зависемость от type
     return (
@@ -28,7 +27,7 @@ const ProductsList = (props) => {
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
-                    props.product.map(p => <Card className={style.card} key={p._id}>
+                    product.map(p => <Card className={style.card} key={p._id}>
                         <Nav as={Link} to={`/product/${p._id}`}>
                             <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + p.picture} />
                         </Nav>
