@@ -45,7 +45,7 @@ const ProductReducer = (state = initialState, action) => {
 
 export const setProduct = (product) => ({ type: SET_PRODUCT, product })
 export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
-export const setColorFilter = (color) => ({ type: SET_COLOR_FILTER, color })
+export const setColorFilter = (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct })
 
 export const getProduct = (type) => {
     return async (dispatch) => {

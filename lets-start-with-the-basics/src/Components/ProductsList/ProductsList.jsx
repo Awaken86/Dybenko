@@ -12,6 +12,7 @@ const ProductsList = (props) => {
     const dispatch = useDispatch()
     const actyalType = props.type
     const product = useSelector((state) => state.ProductPage.product)
+    const color = useSelector((state) => state.ProductPage.colorProduct)
     useEffect(() => {
         dispatch(getProduct(actyalType))
     }, [])
@@ -23,7 +24,6 @@ const ProductsList = (props) => {
         <>
             <Container className={style.Container}>
                 <Filter />
-
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
