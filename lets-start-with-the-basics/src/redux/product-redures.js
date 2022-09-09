@@ -7,7 +7,7 @@ const SET_COLOR_FILTER = 'SET_COLOR_FILTER'
 let initialState = {
     product: [],
     selectedItem: [],
-    colorProduct: '',
+    colorProduct: 'withoutFilter',
     actualType: ''
 };
 
@@ -47,9 +47,9 @@ export const setProduct = (product) => ({ type: SET_PRODUCT, product })
 export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
 export const setColorFilter = (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct })
 
-export const getProduct = (type) => {
+export const getProduct = (type, color) => {
     return async (dispatch) => {
-        let data = await productAPI.getProduct(type)
+        let data = await productAPI.getProduct(type, color)
         dispatch(setProduct(data));
     }
 };

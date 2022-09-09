@@ -5,11 +5,17 @@ import FileService from "./FileService.js";
 class ProductService {
     async create(product, picture) {
         const fileName = FileService.saveFile(picture)
-        const createdProduct = await Product.create({ ...product, picture: fileName})
+        const createdProduct = await Product.create({ ...product, picture: fileName })
         return createdProduct
     }
     async getAll(data) {
-        const products = await Product.find({type:data.type})
+        if (data.color !== 'withoutFilter') {
+            const products = await Product.find({ type: data.type, color: data.color })
+            return products
+        } else {
+            const products = await Product.find({ type: data.type })
+            return products
+        }
         return products;
     }
     async getOne(id) {
