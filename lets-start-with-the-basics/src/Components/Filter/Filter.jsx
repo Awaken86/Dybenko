@@ -11,6 +11,9 @@ const Filter = () => {
     let setFilterHandler = () => {
         dispatch(setColorFilter(color))
     }
+    let filterСleaner = () => {
+        dispatch(setColorFilter('withoutFilter'))
+    }
 
     return (
         <Nav className={style.NavContainer}>
@@ -19,7 +22,7 @@ const Filter = () => {
                     Selected:{color}
                     <Nav>{colorArray.map((i) => <SelectButton key={i} setColor={setColor} color={i} />)}</Nav>
                     <Button variant='dark' onClick={setFilterHandler}>Фильтр</Button>
-                    <Button variant='dark' onClick={() => { setColor('withoutFilter') }}>Очистить фильтр</Button>
+                    <Button variant='dark' onClick={filterСleaner}>Очистить фильтр</Button>
                 </Card.Body>
             </Card>
         </Nav>

@@ -16,7 +16,6 @@ class ProductService {
             const products = await Product.find({ type: data.type })
             return products
         }
-        return products;
     }
     async getOne(id) {
         if (!id) {

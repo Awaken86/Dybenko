@@ -13,13 +13,11 @@ const ProductsList = (props) => {
     const actyalType = props.type
     const product = useSelector((state) => state.ProductPage.product)
     const color = useSelector((state) => state.ProductPage.colorProduct)
-    debugger
     useEffect(() => {
         dispatch(getProduct(actyalType, color))
     }, [])
     useEffect(() => {
         dispatch(getProduct(actyalType, color))
-        alert(color)
     }, [actyalType, color])
     //зависемость от type
     return (
