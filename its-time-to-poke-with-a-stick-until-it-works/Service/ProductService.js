@@ -9,6 +9,7 @@ class ProductService {
         return createdProduct
     }
     async getAll(data) {
+        //cringe
         if (data.color !== 'withoutFilter') {
             const products = await Product.find({ type: data.type, color: data.color })
             return products
@@ -17,6 +18,14 @@ class ProductService {
             return products
         }
     }
+    // async getAll(data) {
+    //     const products = await Product.find({
+    //         type: { $all: data.type },
+    //         color:{}
+    //     })
+    //     console.log(data)
+    //     return products
+    // }
     async getOne(id) {
         if (!id) {
             throw new Error('нет Id')

@@ -13,6 +13,8 @@ const ProductsList = (props) => {
     const actyalType = props.type
     const product = useSelector((state) => state.ProductPage.product)
     const color = useSelector((state) => state.ProductPage.colorProduct)
+    const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
+    const minPrice = useSelector((state) => state.ProductPage.minPrice)
     useEffect(() => {
         dispatch(getProduct(actyalType, color))
     }, [])
@@ -23,7 +25,7 @@ const ProductsList = (props) => {
     return (
         <>
             <Container className={style.Container}>
-                <Filter />
+                <Filter minPrice={minPrice} maxPrice={maxPrice} />
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
