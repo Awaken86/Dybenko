@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Card, Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { setColorFilter } from '../../redux/product-redures';
+import { setColorFilter } from '../../redux/Product-Reducer';
 import style from './Filter.module.css';
 
 const Filter = (props) => {
@@ -11,7 +11,7 @@ const Filter = (props) => {
     let setFilterHandler = () => {
         dispatch(setColorFilter(color))
     }
-    let filterСleaner = () => {
+    let filterCleaner = () => {
         dispatch(setColorFilter('withoutFilter'))
     }
 
@@ -26,7 +26,7 @@ const Filter = (props) => {
                     mix:{props.minPrice}
                     <Nav>{colorArray.map((i) => <SelectButton key={i} setColor={setColor} color={i} />)}</Nav>
                     <Button variant='dark' onClick={setFilterHandler}>Фильтр</Button>
-                    <Button variant='dark' onClick={filterСleaner}>Очистить фильтр</Button>
+                    <Button variant='dark' onClick={filterCleaner}>Очистить фильтр</Button>
                 </Card.Body>
             </Card>
         </Nav>

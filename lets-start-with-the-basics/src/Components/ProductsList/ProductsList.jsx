@@ -6,22 +6,22 @@ import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
 import ReactAudioPlayer from 'react-audio-player';
 import Filter from '../Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../redux/product-redures';
+import { getProduct } from '../../redux/Product-Reducer';
 
 const ProductsList = (props) => {
     const dispatch = useDispatch()
-    const actyalType = props.type
+    const actualType = props.type
     const product = useSelector((state) => state.ProductPage.product)
     const color = useSelector((state) => state.ProductPage.colorProduct)
     const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
     const minPrice = useSelector((state) => state.ProductPage.minPrice)
     useEffect(() => {
-        dispatch(getProduct(actyalType, color))
+        dispatch(getProduct(actualType, color))
     }, [])
     useEffect(() => {
-        dispatch(getProduct(actyalType, color))
-    }, [actyalType, color])
-    //зависемость от type
+        dispatch(getProduct(actualType, color))
+    }, [actualType, color])
+    //зависимость от type
     return (
         <>
             <Container className={style.Container}>
