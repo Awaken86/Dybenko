@@ -60,19 +60,25 @@ const ProductReducer = (state = initialState, action) => {
 
     }
 }
-
-export const setProduct = (product) => ({ type: SET_PRODUCT, product })
-export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
-export const setColorFilter = (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct })
-export const setMaxPrice = (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice })
-export const setMinPrice = (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
+export const actions = {
+    setProduct: (product) => ({ type: SET_PRODUCT, product }),
+    setOneProduct: (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct }),
+    setColorFilter: (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct }),
+    setMaxPrice: (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice }),
+    setMinPrice: (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
+}
+//export const setProduct = (product) => ({ type: SET_PRODUCT, product })
+//export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
+//export const setColorFilter = (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct })
+//export const setMaxPrice = (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice })
+//export const setMinPrice = (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
 
 export const getProduct = (type, color) => {
     return async (dispatch) => {
         let data = await productAPI.getProduct(type, color)
-        dispatch(setProduct(data.products));
-        dispatch(setMaxPrice(data.maxPrice))
-        dispatch(setMinPrice(data.minPrice))
+        dispatch(actions.setProduct(data.products));
+        dispatch(actions.setMaxPrice(data.maxPrice))
+        dispatch(actions.setMinPrice(data.minPrice))
     }
 };
 
@@ -80,7 +86,7 @@ export const getProduct = (type, color) => {
 export const getOneProduct = (url) => {
     return async (dispatch) => {
         let data = await productAPI.getOneProduct(url)
-        dispatch(setOneProduct(data));
+        dispatch(actions.setOneProduct(data));
     };
 }
 
