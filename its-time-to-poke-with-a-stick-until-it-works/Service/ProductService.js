@@ -10,13 +10,14 @@ class ProductService {
     }
     async getAll(data) {
         //cringe
+        let products
         if (data.color !== 'withoutFilter') {
-            const products = await Product.find({ type: data.type, color: data.color })
-            return products
+            products = await Product.find({ type: data.type, color: data.color })
         } else {
-            const products = await Product.find({ type: data.type })
-            return products
+            products = await Product.find({ type: data.type })
+            
         }
+        return products
     }
     // async getAll(data) {
     //     const products = await Product.find({

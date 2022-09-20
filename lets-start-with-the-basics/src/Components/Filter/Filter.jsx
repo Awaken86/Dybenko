@@ -20,9 +20,7 @@ const Filter = (props) => {
         <Nav className={style.NavContainer}>
             <Card >
                 <Card.Body>
-                    Selected:{color}
-                    <br />
-                    <PriceFilterForm/>
+                    <PriceFilterForm maxPrice={props.maxPrice} minPrice={props.minPrice}/>
                     max:{props.maxPrice}
                     <br />
                     mix:{props.minPrice}

@@ -2,7 +2,8 @@
 .NavContainer {
     display: flex;
     height: 100%;
-    width: 150px;
+    width: 15%;
+    min-width: 140px;
 }
 
 .NavColorContainer {
