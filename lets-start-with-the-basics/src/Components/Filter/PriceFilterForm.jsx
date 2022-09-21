@@ -31,9 +31,21 @@ export const PriceFilterForm = React.memo((props) => {
                 >
                     {({ isSubmitting }) => (
                         <Form>
-                            <Field type="input" name="maxPrice" className={style.inputElem} />
-                            <ErrorMessage name="maxPrice" component="div" />
-                            <Field type="input" name="minPrice" className={style.inputElem}/>
+                            <div>
+                                {!editMode &&
+                                    <div>
+                                        <span onDoubleClick={activeEditMode}>{props.status ? props.status : '"without status"'}</span>
+                                    </div>
+                                }
+                                {editMode &&
+                                    <div>
+                                        <input onChange={onStatusChange} autoFocus={true} value={status} onBlur={deactiveEditMode} />
+                                        <Field type="input" name="maxPrice" className={style.inputElem} />
+                                        <ErrorMessage name="maxPrice" component="div" />
+                                    </div>
+                                }
+                            </div>
+                            <Field type="input" name="minPrice" className={style.inputElem} />
                             <ErrorMessage name="minPrice" component="div" />
                             <button type="submit" disabled={isSubmitting}>
                                 Submit
