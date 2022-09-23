@@ -5,6 +5,7 @@ const SET_ONE_PRODUCT = 'SET_ONE_PRODUCT'
 const SET_COLOR_FILTER = 'SET_COLOR_FILTER'
 const SET_MIN_PRICE = 'SET_MIN_PRICE'
 const SET_MAX_PRICE = 'SET_MAX_PRICE'
+const SET_SELECTED_PRICES = 'SET_SELECTED_PRICE'
 
 let initialState = {
     product: [],
@@ -12,7 +13,8 @@ let initialState = {
     colorProduct: 'withoutFilter',
     actualType: '',
     maxPrice: 0,
-    minPrice: 0
+    minPrice: 0,
+    selectedPrice: {}
 };
 
 
@@ -55,6 +57,12 @@ const ProductReducer = (state = initialState, action) => {
                 maxPrice: action.maxPrice
             }
         }
+        case SET_SELECTED_PRICES: {
+            return {
+                ...state,
+                selectedPrice: action.selectedPrice
+            }
+        }
         default:
             return state;
 
@@ -65,7 +73,8 @@ export const actions = {
     setOneProduct: (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct }),
     setColorFilter: (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct }),
     setMaxPrice: (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice }),
-    setMinPrice: (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
+    setMinPrice: (minPrice) => ({ type: SET_MIN_PRICE, minPrice }),
+    setSelectedPrice: (selectedPrice) => ({ type: SET_SELECTED_PRICES, selectedPrice })
 }
 //export const setProduct = (product) => ({ type: SET_PRODUCT, product })
 //export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })

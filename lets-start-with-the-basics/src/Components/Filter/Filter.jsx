@@ -9,6 +9,9 @@ const Filter = (props) => {
     const [color, setColor] = useState('withoutFilter')
     let colorArray = ['red', 'white', 'black']
     const dispatch = useDispatch()
+    let setSelectedPriceHandler = (selectedPrice) => {
+        dispatch(actions.setSelectedPrice(selectedPrice))
+    }
     let setFilterHandler = () => {
         dispatch(actions.setColorFilter(color))
     }
@@ -20,7 +23,7 @@ const Filter = (props) => {
         <Nav className={style.NavContainer}>
             <Card >
                 <Card.Body>
-                    <PriceFilterForm maxPrice={props.maxPrice} minPrice={props.minPrice}/>
+                    <PriceFilterForm setSelectedPriceHandler={setSelectedPriceHandler} maxPrice={props.maxPrice} minPrice={props.minPrice} />
                     max:{props.maxPrice}
                     <br />
                     mix:{props.minPrice}
