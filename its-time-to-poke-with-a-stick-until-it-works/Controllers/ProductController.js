@@ -1,23 +1,6 @@
 import ProductService from "../Service/ProductService.js";
 
-const MaxPrice = (products) => {
-    let maxPrice = products.reduce((prev, cur) => {
-        if (prev.price > cur.price) {
-            return prev
-        }
-        return cur
-    })
-    return maxPrice.price
-}
-const MinPrice = (products) => {
-    let minPrice = products.reduce((prev, cur) => {
-        if (prev.price < cur.price) {
-            return prev
-        }
-        return cur
-    })
-    return minPrice.price
-}
+
 class ProductController {
     async create(req, res) {
         try {
@@ -32,15 +15,7 @@ class ProductController {
     async getAll(req, res) {
         try {
             const products = await ProductService.getAll(req.query);
-            const maxPrice = MaxPrice(products)
-            const minPrice = MinPrice(products)
-            
-            const objRes = {
-                products: products,
-                maxPrice: maxPrice,
-                minPrice: minPrice
-            }
-            return res.json(objRes);
+            return res.json(products);
         } catch (e) {
             res.status(500).json(e)
         }

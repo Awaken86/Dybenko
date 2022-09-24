@@ -15,13 +15,13 @@ const ProductsList = (props) => {
     const color = useSelector((state) => state.ProductPage.colorProduct)
     const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
     const minPrice = useSelector((state) => state.ProductPage.minPrice)
-    const selectedPrice = useSelector((state) => state.selectedPrice)
+    const selectedPrice = useSelector((state) => state.ProductPage.selectedPrice)
     useEffect(() => {
-        dispatch(getProduct(actualType, color))
+        dispatch(getProduct(actualType, color, selectedPrice))
     }, [])
     useEffect(() => {
-        dispatch(getProduct(actualType, color))
-    }, [actualType, color])
+        dispatch(getProduct(actualType, color, selectedPrice))
+    }, [actualType, color, selectedPrice])
     //зависимость от type
     return (
         <>

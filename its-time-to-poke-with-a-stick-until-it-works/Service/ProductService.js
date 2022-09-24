@@ -1,6 +1,24 @@
 import Product from "../Schema/Product.js";
 import FileService from "./FileService.js";
 
+const MaxPrice = (products) => {
+    let maxPrice = products.reduce((prev, cur) => {
+        if (prev.price > cur.price) {
+            return prev
+        }
+        return cur
+    })
+    return maxPrice.price
+}
+const MinPrice = (products) => {
+    let minPrice = products.reduce((prev, cur) => {
+        if (prev.price < cur.price) {
+            return prev
+        }
+        return cur
+    })
+    return minPrice.price
+}
 
 class ProductService {
     async create(product, picture) {
@@ -10,14 +28,30 @@ class ProductService {
     }
     async getAll(data) {
         //cringe
-        let products
+        let products = await Product.find({ type: data.type })
+        let maxPrice = MaxPrice(products)
+        let minPrice = MinPrice(products)
+        let maxSelected = data.maxSelected
+        let minSelected = data.minSelected
+        
+        //фильтр по цвету 
         if (data.color !== 'withoutFilter') {
-            products = await Product.find({ type: data.type, color: data.color })
-        } else {
-            products = await Product.find({ type: data.type })
-            
+            products = products.filter((prod) => {
+                return prod.color === data.color
+            })
         }
-        return products
+        //фильтр по цене
+        if (maxSelected < maxPrice || minSelected > minPrice) {
+            products = products.filter((prod) => {
+                return prod.price <= maxSelected && prod.price >= minSelected
+            })
+        }
+        const objProdMinPrMaxPr = {
+            products: products,
+            maxPrice: maxPrice,
+            minPrice: minPrice
+        }
+        return objProdMinPrMaxPr
     }
     // async getAll(data) {
     //     const products = await Product.find({

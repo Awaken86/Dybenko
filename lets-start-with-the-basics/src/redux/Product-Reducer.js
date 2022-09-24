@@ -82,9 +82,9 @@ export const actions = {
 //export const setMaxPrice = (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice })
 //export const setMinPrice = (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
 
-export const getProduct = (type, color) => {
+export const getProduct = (type, color, selectedPrice) => {
     return async (dispatch) => {
-        let data = await productAPI.getProduct(type, color)
+        let data = await productAPI.getProduct(type, color,selectedPrice)
         dispatch(actions.setProduct(data.products));
         dispatch(actions.setMaxPrice(data.maxPrice))
         dispatch(actions.setMinPrice(data.minPrice))
