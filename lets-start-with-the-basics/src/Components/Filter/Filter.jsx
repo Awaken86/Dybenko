@@ -8,12 +8,7 @@ import { PriceFilterForm } from './PriceFilterForm';
 const Filter = (props) => {
     const colorArray = ['red', 'white', 'black']
     const dispatch = useDispatch()
-    const setSelectedPriceHandler = (selectedPrice) => {
-        dispatch(actions.setSelectedPrice(selectedPrice))
-    }
-    const filterCleaner = () => {
-        dispatch(actions.setColorFilter('withoutFilter'))
-    }
+
     const SelectButton = (props) => {
         return (
             <button className={style.button} style={{ backgroundColor: props.color }} onClick={() => {
@@ -25,12 +20,15 @@ const Filter = (props) => {
         <Nav className={style.NavContainer}>
             <Card >
                 <Card.Body>
-                    <PriceFilterForm setSelectedPriceHandler={setSelectedPriceHandler} maxPrice={props.maxPrice} minPrice={props.minPrice} />
+                    <PriceFilterForm selectedPrice={props.selectedPrice}
+                        setSelectedPriceHandler={props.setSelectedPriceHandler}
+                        maxPrice={props.maxPrice}
+                        minPrice={props.minPrice} />
                     max:{props.maxPrice}
                     <br />
                     mix:{props.minPrice}
                     <Nav>{colorArray.map((i) => <SelectButton key={i} color={i} />)}</Nav>
-                    <Button variant='dark' onClick={filterCleaner}>Очистить фильтр</Button>
+                    <Button variant='dark' onClick={props.filterCleaner}>Очистить фильтр</Button>
                 </Card.Body>
             </Card>
         </Nav>

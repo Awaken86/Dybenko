@@ -9,13 +9,21 @@ export const PriceFilterForm = React.memo((props) => {
         maxPrice: props.maxPrice,
         minPrice: props.minPrice
     })
+    let selectedPrice = props.selectedPrice
     useEffect(() => {
-        setPriceInfoState({
-            maxPrice: props.maxPrice,
-            minPrice: props.minPrice
-        })
-    }, [props.maxPrice, props.minPrice])
-    
+        if (selectedPrice.maxPrice <= props.maxPrice || selectedPrice.minPrice >= props.minPrice) {
+            setPriceInfoState({
+                maxPrice: selectedPrice.maxPrice,
+                minPrice: selectedPrice.minPrice
+            })
+        } else {
+            setPriceInfoState({
+                maxPrice: props.maxPrice,
+                minPrice: props.minPrice
+            })
+        }
+    }, [props.maxPrice, props.minPrice, props.selectedPrice])
+
     const activeEditMode = () => {
         setEditMode(true)
     }

@@ -6,7 +6,7 @@ import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
 import ReactAudioPlayer from 'react-audio-player';
 import Filter from '../Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../redux/Product-Reducer';
+import { actions, getProduct } from '../../redux/Product-Reducer';
 
 const ProductsList = (props) => {
     const dispatch = useDispatch()
@@ -16,17 +16,31 @@ const ProductsList = (props) => {
     const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
     const minPrice = useSelector((state) => state.ProductPage.minPrice)
     const selectedPrice = useSelector((state) => state.ProductPage.selectedPrice)
+    console.log(selectedPrice)
     useEffect(() => {
         dispatch(getProduct(actualType, color, selectedPrice))
     }, [])
     useEffect(() => {
         dispatch(getProduct(actualType, color, selectedPrice))
     }, [actualType, color, selectedPrice])
-    //зависимость от type
+    const setSelectedPriceHandler = (selectedPrice) => {
+        dispatch(actions.setSelectedPrice(selectedPrice))
+    }
+    const filterCleaner = () => {
+        dispatch(actions.setColorFilter('withoutFilter'))
+        //зачистить выбранные цены
+        dispatch(actions.setSelectedPrice({}))
+    }
+    console.log(selectedPrice)
     return (
         <>
             <Container className={style.Container}>
-                <Filter selectedPrice={selectedPrice} minPrice={minPrice} maxPrice={maxPrice} />
+                <Filter filterCleaner={filterCleaner}
+                    setSelectedPriceHandler={setSelectedPriceHandler}
+                    selectedPrice={selectedPrice}
+                    minPrice={minPrice}
+                    maxPrice={maxPrice}
+                />
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
