@@ -11,7 +11,8 @@ export const PriceFilterForm = React.memo((props) => {
     })
     let selectedPrice = props.selectedPrice
     useEffect(() => {
-        if (selectedPrice.maxPrice <= props.maxPrice || selectedPrice.minPrice >= props.minPrice) {
+
+        if (selectedPrice.maxPrice <= props.maxPrice && selectedPrice.minPrice >= props.minPrice) {
             setPriceInfoState({
                 maxPrice: selectedPrice.maxPrice,
                 minPrice: selectedPrice.minPrice
@@ -24,12 +25,24 @@ export const PriceFilterForm = React.memo((props) => {
         }
     }, [props.maxPrice, props.minPrice, props.selectedPrice])
 
+
     const activeEditMode = () => {
         setEditMode(true)
     }
     const deactiveEditMode = () => {
         setEditMode(false)
-        props.setSelectedPriceHandler(PriceInfoState);
+        if (PriceInfoState.maxPrice <= props.maxPrice &&
+            PriceInfoState.maxPrice >= props.minPrice &&
+            PriceInfoState.minPrice >= props.minPrice &&
+            PriceInfoState.minPrice <= props.maxPrice) {
+            props.setSelectedPriceHandler(PriceInfoState);
+        }
+        else {
+            setPriceInfoState({
+                maxPrice: props.maxPrice,
+                minPrice: props.minPrice
+            })
+        }
     }
     const onMaxPriceChange = (e) => {
         setPriceInfoState({
@@ -42,6 +55,7 @@ export const PriceFilterForm = React.memo((props) => {
             maxPrice: PriceInfoState.maxPrice,
             minPrice: e.currentTarget.value
         })
+
     }
     return (
         <div>

@@ -16,13 +16,16 @@ const ProductsList = (props) => {
     const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
     const minPrice = useSelector((state) => state.ProductPage.minPrice)
     const selectedPrice = useSelector((state) => state.ProductPage.selectedPrice)
-    console.log(selectedPrice)
     useEffect(() => {
         dispatch(getProduct(actualType, color, selectedPrice))
     }, [])
     useEffect(() => {
         dispatch(getProduct(actualType, color, selectedPrice))
     }, [actualType, color, selectedPrice])
+    useEffect(() => {
+        filterCleaner()
+        
+    }, [actualType])
     const setSelectedPriceHandler = (selectedPrice) => {
         dispatch(actions.setSelectedPrice(selectedPrice))
     }
@@ -31,7 +34,6 @@ const ProductsList = (props) => {
         //зачистить выбранные цены
         dispatch(actions.setSelectedPrice({}))
     }
-    console.log(selectedPrice)
     return (
         <>
             <Container className={style.Container}>
@@ -40,6 +42,7 @@ const ProductsList = (props) => {
                     selectedPrice={selectedPrice}
                     minPrice={minPrice}
                     maxPrice={maxPrice}
+                    actualType={actualType}
                 />
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 

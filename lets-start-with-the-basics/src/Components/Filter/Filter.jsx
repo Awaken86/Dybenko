@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Card, Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/Product-Reducer';
@@ -23,7 +24,8 @@ const Filter = (props) => {
                     <PriceFilterForm selectedPrice={props.selectedPrice}
                         setSelectedPriceHandler={props.setSelectedPriceHandler}
                         maxPrice={props.maxPrice}
-                        minPrice={props.minPrice} />
+                        minPrice={props.minPrice}
+                        actualType={props.actualType} />
                     max:{props.maxPrice}
                     <br />
                     mix:{props.minPrice}
