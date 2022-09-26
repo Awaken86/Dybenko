@@ -44,18 +44,24 @@ export const PriceFilterForm = React.memo((props) => {
             })
         }
     }
+
+
+
     const onMaxPriceChange = (e) => {
-        setPriceInfoState({
-            maxPrice: e.currentTarget.value,
-            minPrice: PriceInfoState.minPrice
-        })
+        if (/^\d+$/i.test(e.currentTarget.value)) {
+            setPriceInfoState({
+                maxPrice: e.currentTarget.value,
+                minPrice: PriceInfoState.minPrice
+            })
+        }
     }
     const onMinPriceChange = (e) => {
-        setPriceInfoState({
-            maxPrice: PriceInfoState.maxPrice,
-            minPrice: e.currentTarget.value
-        })
-
+        if (/^\d+$/i.test(e.currentTarget.value)) {
+            setPriceInfoState({
+                maxPrice: PriceInfoState.maxPrice,
+                minPrice: e.currentTarget.value
+            })
+        }
     }
     return (
         <div>
@@ -67,6 +73,7 @@ export const PriceFilterForm = React.memo((props) => {
                             PriceInfoState
                         }
                     }
+
                     enableReinitialize={true}
                 >
                     {({ isSubmitting }) => (
