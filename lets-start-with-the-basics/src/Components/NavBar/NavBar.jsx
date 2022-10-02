@@ -25,10 +25,7 @@ const NavBar = () => {
                     </Nav>
                     <Nav >
                         <Nav.Link as={Link} to='/favorites'><BsHeartFill /></Nav.Link>
-                        <Nav>
-
-                            <ModalLogin />
-                        </Nav>
+                        <ModalLogin />
                     </Nav>
                 </Navbar.Collapse>
             </Container>
