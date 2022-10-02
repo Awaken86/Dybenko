@@ -29,7 +29,7 @@ export const PriceFilterForm = React.memo((props) => {
     const activeEditMode = () => {
         setEditMode(true)
     }
-    const deactiveEditMode = () => {
+    const deactivateEditMode = () => {
         setEditMode(false)
         if (PriceInfoState.maxPrice <= props.maxPrice &&
             PriceInfoState.maxPrice >= props.minPrice &&
@@ -89,7 +89,7 @@ export const PriceFilterForm = React.memo((props) => {
                                     </div>
                                 }
                                 {editMode &&
-                                    <div onBlur={deactiveEditMode}>
+                                    <div onBlur={deactivateEditMode}>
                                         <Field onChange={onMaxPriceChange} value={PriceInfoState.maxPrice} type="input" name="maxPrice" className={style.inputElem} />
                                         <ErrorMessage name="maxPrice" component="div" />
                                         <Field onChange={onMinPriceChange} value={PriceInfoState.minPrice} type="input" name="minPrice" className={style.inputElem} />
