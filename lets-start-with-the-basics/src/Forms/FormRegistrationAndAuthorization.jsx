@@ -89,28 +89,40 @@
 //         </Formik >
 //     );
 // }
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Container, Form, Modal, ModalFooter, Nav } from "react-bootstrap";
+import { Button, Container, Form, Modal, Nav } from "react-bootstrap";
 
 const FormRegistrationAndAuthorization = (props) => {
 
     const formik = useFormik({
         initialValues: {
-            firstName: "",
-            lastName: "",
-            email: ""
+            email: "",
+            password: "",
+            confirmPassword: "",
         },
         validationSchema: Yup.object({
             email: Yup.string()
                 .email("Invalid email address")
                 .required("Required"),
             password: Yup.string()
+                .min(5, 'Too Short!')
+                .max(25, 'Too Long!')
                 .required("Required"),
             confirmPassword: Yup.string()
-                .required("Required")
+                .test({
+                    exclusive: false,
+                    message: 'invalid password confirmation',
+                    test: function (value) {
+                        // You can access the price field with `this.parent`.
+                        if (!props.isRegistration) { return true }
+                        if (value === this.parent.password) {
+                            return value
+                        }
+                    },
+                })
         }),
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
@@ -139,34 +151,34 @@ const FormRegistrationAndAuthorization = (props) => {
                                 ) : null}
                             </Form.Text>
                         </Form.Group>
-                        <Form.Group controlId="firstName">
+                        <Form.Group controlId="password">
                             <Form.Label>password</Form.Label>
                             <Form.Control
-                                name="firstName"
+                                name="password"
                                 type="password" placeholder="Enter password"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.firstName}
+                                value={formik.values.password}
                             />
                             <Form.Text className="text-danger">
-                                {formik.touched.firstName && formik.errors.firstName ? (
-                                    <div className="text-danger">{formik.errors.firstName}</div>
+                                {formik.touched.password && formik.errors.password ? (
+                                    <div className="text-danger">{formik.errors.password}</div>
                                 ) : null}
                             </Form.Text>
                         </Form.Group>
                         {props.isRegistration ?
-                            <Form.Group controlId="lastName">
+                            <Form.Group controlId="confirmPassword">
                                 <Form.Control
-                                    name="lastName"
+                                    name="confirmPassword"
                                     type="password"
                                     placeholder="Confirm the password"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.lastName}
+                                    value={formik.values.confirmPassword}
                                 />
                                 <Form.Text className="text-danger">
-                                    {formik.touched.lastName && formik.errors.lastName ? (
-                                        <div className="text-danger">{formik.errors.lastName}</div>
+                                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                                        <div className="text-danger">{formik.errors.confirmPassword}</div>
                                     ) : null}
                                 </Form.Text>
                             </Form.Group> : null}
