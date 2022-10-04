@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel, Col, Container, Row } from "react-bootstrap";
-import srcDimic from '../../ComItems/img/527bd42276ededf6.png';
-import agenttainiy from '../../ComItems/img/agenttainiy.png';
-import apravoslavno from '../../ComItems/img/pravoslavno.png';
+import srcDimic from '../../../ComItems/img/527bd42276ededf6.png';
+import agenttainiy from '../../../ComItems/img/agenttainiy.png';
+import apravoslavno from '../../../ComItems/img/pravoslavno.png';
 import './Karysel.module.css';
 
 const Karysel = () => {

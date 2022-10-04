@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import style from './NavBar.module.css';
-import { BsHeartFill } from "react-icons/bs";
+import { BsFillCartFill } from "react-icons/bs";
 import ModalLogin from './Modal-Login';
 
 
@@ -24,7 +24,7 @@ const NavBar = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav >
-                        <Nav.Link as={Link} to='/favorites'><BsHeartFill /></Nav.Link>
+                        <Nav.Link as={Link} to='/Basket'><BsFillCartFill /></Nav.Link>
                         <ModalLogin />
                     </Nav>
                 </Navbar.Collapse>
