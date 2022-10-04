@@ -76,11 +76,6 @@ export const actions = {
     setMinPrice: (minPrice) => ({ type: SET_MIN_PRICE, minPrice }),
     setSelectedPrice: (selectedPrice) => ({ type: SET_SELECTED_PRICES, selectedPrice })
 }
-//export const setProduct = (product) => ({ type: SET_PRODUCT, product })
-//export const setOneProduct = (oneProduct) => ({ type: SET_ONE_PRODUCT, oneProduct })
-//export const setColorFilter = (colorProduct) => ({ type: SET_COLOR_FILTER, colorProduct })
-//export const setMaxPrice = (maxPrice) => ({ type: SET_MAX_PRICE, maxPrice })
-//export const setMinPrice = (minPrice) => ({ type: SET_MIN_PRICE, minPrice })
 
 export const getProduct = (type, color, selectedPrice) => {
     return async (dispatch) => {
