@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Button, Card, Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { actions } from '../../redux/Product-Reducer';
+import { actions } from '../../../redux/Product-Reducer';
 import style from './Filter.module.css';
 import { PriceFilterForm } from './PriceFilterForm';
 

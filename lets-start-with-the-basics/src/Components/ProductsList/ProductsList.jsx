@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import style from './ProductsList.module.css';
 import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
 import ReactAudioPlayer from 'react-audio-player';
-import Filter from '../Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions, getProduct } from '../../redux/Product-Reducer';
+import Filter from './Filter/Filter';
 
 const ProductsList = (props) => {
     const dispatch = useDispatch()
@@ -24,7 +24,7 @@ const ProductsList = (props) => {
     }, [actualType, color, selectedPrice])
     useEffect(() => {
         filterCleaner()
-        
+
     }, [actualType])
     const setSelectedPriceHandler = (selectedPrice) => {
         dispatch(actions.setSelectedPrice(selectedPrice))

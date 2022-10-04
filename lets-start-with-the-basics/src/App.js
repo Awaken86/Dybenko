@@ -7,7 +7,7 @@ import Footer from './Components/Footer/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import style from './App.module.css'
 import ProductsContainer from './Components/ProductsList/ProductsContainer';
-import Basket from './Components/ProductsList/Basket/Basket';
+import Basket from './Components/Basket/Basket';
 
 const App = () => {
     return (
