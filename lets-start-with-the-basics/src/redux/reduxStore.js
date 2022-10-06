@@ -6,14 +6,22 @@ import { persistStore, persistReducer } from 'redux-persist'
 import BasketReducer from "./Basket-Reducer";
 
 
-let reducers = combineReducers({
+
+
+const reducers = combineReducers({
     ProductPage: productReducer,
     BasketPage: BasketReducer
-});
+})
+
+const reducersPersistConfig = {
+    key: 'root',
+    storage: storage,
+    whitelist: ['BasketPage']
+}
 
 
+const persistedReducer = persistReducer(reducersPersistConfig, reducers)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+export const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
+export const persistor = persistStore(store)
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
-
-export default store;
