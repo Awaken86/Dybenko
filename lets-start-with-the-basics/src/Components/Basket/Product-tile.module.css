@@ -1,0 +1,39 @@
+.NavContainer {
+    display: flex;
+    height: 100%;
+    width: 150px;
+}
+
+.NavColorContainer {
+    height: 100%;
+}
+
+.imgCard {
+    height: 60%;
+    width: 60%;
+    max-width: 150px;
+}
+
+.title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.3em;
+}
+
+.card {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.Cardbody {
+    display: flex;
+}
+
+.price {
+    display: flex;
+    margin-top: 15px;
+    margin-left: 15px;
+}
