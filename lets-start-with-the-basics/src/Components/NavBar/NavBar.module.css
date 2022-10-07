@@ -1,4 +1,23 @@
-.containerNavBar{
+.containerNavBar {
     max-height: 111%;
-    
+
+}
+
+.countStyle {
+    border-radius: 10px;
+    background-color: red;
+    width: 22px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+    color: azure;
+    position: absolute;
+    margin: 0px 0px 0px 15px;
+    transform: translate(3px, -4px);
+    align-items: center;
+}
+
+.basketNavLink {
+    margin-right: 17px;
 }

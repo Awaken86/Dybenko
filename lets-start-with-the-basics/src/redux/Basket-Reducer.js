@@ -8,14 +8,14 @@ let initialState = {
         picture: 'qwe.png',
         countItem: 1
     }],
-    userEmail: 'dasads@mail.ru'
+    userEmail: ''
 }
 
 const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_BASKET: {
             const createProductCell = {
-                id: action.selectedItem.id,
+                id: action.selectedItem._id,
                 price: action.selectedItem.price,
                 title: action.selectedItem.title,
                 picture: action.selectedItem.picture,
@@ -24,6 +24,8 @@ const BasketReducer = (state = initialState, action) => {
             return {
                 // ...state,
                 // basket: [createProductCell, ...state.basket]
+                //...state,
+                // basket: []
                 ...state, basket: [createProductCell, ...state.basket]
             }
         }

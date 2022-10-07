@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import style from './NavBar.module.css';
 import { BsFillCartFill } from "react-icons/bs";
 import ModalLogin from './Modal-Login';
+import { useSelector } from 'react-redux';
 
 
 const NavBar = () => {
+    const basket = useSelector((state) => state.BasketPage.basket)
+    const count = basket.length
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container className={style.containerNavBar}>
@@ -24,7 +27,12 @@ const NavBar = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav >
-                        <Nav.Link as={Link} to='/Basket'><BsFillCartFill /></Nav.Link>
+                        <Nav.Link className={style.basketNavLink} as={Link} to='/Basket'>
+                            <Nav>
+                                <BsFillCartFill style={{ fontSize: 25 }} />
+                                {count > 0 ? <Nav className={style.countStyle}>{count}</Nav> : null}
+                            </Nav>
+                        </Nav.Link>
                         <ModalLogin />
                     </Nav>
                 </Navbar.Collapse>
