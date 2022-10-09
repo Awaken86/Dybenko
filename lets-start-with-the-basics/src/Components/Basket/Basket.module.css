@@ -1,0 +1,35 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #161616
+        /* background-color: aliceblue; */
+}
+
+.NavText {
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-size: 3vw;
+    color: rgba(240, 248, 255, 0.349);
+
+}
+
+@media (max-width: 690px) {
+    .NavText {
+        font-size: 8vw;
+    }
+}
+
+.cardIcon {
+    font-size: 95vw;
+    max-width: 400px;
+    max-height: 400px;
+    color: rgb(70, 70, 70);
+}

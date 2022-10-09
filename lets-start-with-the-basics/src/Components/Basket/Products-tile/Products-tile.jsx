@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { Card, Container, Nav } from "react-bootstrap"
 import { useSelector } from "react-redux"
-import style from './Product-tile.module.css'
-const ProductTile = (props) => {
+import style from './Products-tile.module.css'
+const ProductsTile = (props) => {
     return (
         <Container>
             <Card className={style.card} >
@@ -22,4 +22,4 @@ const ProductTile = (props) => {
         </Container>
     )
 }
-export default ProductTile
+export default ProductsTile
