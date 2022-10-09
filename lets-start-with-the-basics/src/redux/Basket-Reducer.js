@@ -1,13 +1,7 @@
 const ADD_TO_BASKET = 'ADD_TO_BASKET'
 
 let initialState = {
-    basket: [{
-        id: 1,
-        price: 1000,
-        title: 'shota',
-        picture: 'qwe.png',
-        countItem: 1
-    }],
+    basket: [],
     userEmail: ''
 }
 
@@ -23,8 +17,6 @@ const BasketReducer = (state = initialState, action) => {
             }
             return {
                 // ...state,
-                // basket: [createProductCell, ...state.basket]
-                //...state,
                 // basket: []
                 ...state, basket: [createProductCell, ...state.basket]
             }

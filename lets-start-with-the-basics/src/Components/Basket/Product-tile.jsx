@@ -6,7 +6,7 @@ const ProductTile = (props) => {
     return (
         <Container>
             <Card className={style.card} >
-                <Card.Body className={style.Cardbody}>
+                <Card.Body className={style.CardBody}>
                     <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + props.arrObj.picture} />
                     <Card.Title >
                         <Nav className={style.title}>
