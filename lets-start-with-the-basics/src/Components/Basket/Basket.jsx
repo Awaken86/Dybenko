@@ -12,16 +12,14 @@ const Basket = () => {
     return (
         <Container className={style.Container}>
             {findId ?
-                <Nav>
+                <Nav className={style.NavBasketContainer}>
                     <Nav>
                         {basket.map(arrObj => <ProductTile arrObj={arrObj} />)}
                     </Nav>
-                    <Nav>
-                        <OrderPriceAndBuyer />
-                    </Nav>
+                    <OrderPriceAndBuyer  />
                 </Nav> :
                 <Nav >
-                    <Nav className={style.NavBody}>
+                    <Nav className={style.NavEmptyBasket}>
                         <BsCart4 className={style.cardIcon}></BsCart4>
                         <Nav className={style.NavText}>Ваша Корзина пуста</Nav>
                     </Nav>

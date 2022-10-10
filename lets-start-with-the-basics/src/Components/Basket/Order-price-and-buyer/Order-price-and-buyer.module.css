@@ -1,3 +1,32 @@
-h2{
-    color: aliceblue;
+h2 {
+    font-weight: 555;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    /* max-width: 300px; */
+    max-width: 20em;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    border-radius: 20px;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-content: space-between;
+    padding: 18px;
+}
+
+.toPayAndSumma {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.toPay {
+    font-weight: 555;
+}
+
+.Summa {
+    font-size: 23px;
+    font-weight: 1000;
 }
