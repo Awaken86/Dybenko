@@ -1,4 +1,5 @@
 const ADD_TO_BASKET = 'ADD_TO_BASKET'
+const SET_BASKET = 'SET_BASKET'
 
 let initialState = {
     basket: [],
@@ -21,13 +22,20 @@ const BasketReducer = (state = initialState, action) => {
                 ...state, basket: [createProductCell, ...state.basket]
             }
         }
+        case SET_BASKET: {
+            return {
+                ...state,
+                basket: action.newBasket
+            }
+        }
         default:
             return state;
 
     }
 }
 export const actions = {
-    addToBasket: (selectedItem, countItem) => ({ type: ADD_TO_BASKET, selectedItem, countItem })
+    addToBasket: (selectedItem, countItem) => ({ type: ADD_TO_BASKET, selectedItem, countItem }),
+    setBasket: (newBasket) => ({ type: SET_BASKET, newBasket })
 }
 
 export const addToBasket = (Auth, selectedItem, countItem) => {
@@ -41,15 +49,19 @@ export const addToBasket = (Auth, selectedItem, countItem) => {
     }
 }
 export const updateBasket = (Auth, basket, arrObj, count) => {
-    debugger
     return async (dispatch) => {
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
         } else {
             //dispatch(actions.addToBasket(selectedItem, countItem))
-            let fitration = obj.cart.filter(i => JSON.stringify({ fieldId: i.fieldId }) ===
-                JSON.stringify({ fieldId: data.fieldId })) // сверяем fielId
+            let FindAndChangeCount = basket.filter((obj) => {
+                if (JSON.stringify(obj) === JSON.stringify(arrObj)) {
+                    obj.countItem = count
+                }
+                return obj
+            })
+            dispatch(actions.setBasket(FindAndChangeCount))
         }
     }
 }

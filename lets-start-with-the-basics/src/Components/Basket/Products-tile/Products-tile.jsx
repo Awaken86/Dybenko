@@ -8,7 +8,7 @@ const ProductsTile = (props) => {
         if (props.arrObj.countItem === 1) {
             return false
         } else {
-            props.updateBasket(props.arrObj, props.count - 1)
+            props.updateBasket(props.arrObj, props.arrObj.countItem - 1)
         }
     }
     //прибавить
