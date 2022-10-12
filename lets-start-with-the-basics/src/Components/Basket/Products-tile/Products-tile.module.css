@@ -31,10 +31,33 @@
 
 .CardBody {
     display: flex;
+    justify-content: space-between;
 }
 
 .price {
     display: flex;
     margin-top: 15px;
     margin-left: 15px;
+}
+
+.counter {
+    width: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.counter button {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 26px;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+
+}
+.counter span{
+    color: #000;
+    margin: 10px;
 }

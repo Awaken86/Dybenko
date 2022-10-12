@@ -1,22 +1,27 @@
 import { useEffect } from "react"
 import { Card, Container, Nav } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import style from './Basket.module.css'
 import ProductTile from "./Products-tile/Products-tile"
 import { BsCart4 } from "react-icons/bs";
 import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
+import { updateBasket } from "../../redux/Basket-Reducer"
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
     const findId = basket.find(obj => obj.id !== undefined)
-
+    const dispatch = useDispatch()
+    const Auth = false
+    const updateBasketHandler = (arrObj, count) => {
+        dispatch(updateBasket(Auth, basket, arrObj, count))
+    }
     return (
         <Container className={style.Container}>
             {findId ?
                 <Nav className={style.NavBasketContainer}>
                     <Nav>
-                        {basket.map(arrObj => <ProductTile arrObj={arrObj} />)}
+                        {basket.map(arrObj => <ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />)}
                     </Nav>
-                    <OrderPriceAndBuyer  />
+                    <OrderPriceAndBuyer />
                 </Nav> :
                 <Nav >
                     <Nav className={style.NavEmptyBasket}>

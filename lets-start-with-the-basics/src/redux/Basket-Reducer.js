@@ -33,13 +33,25 @@ export const actions = {
 export const addToBasket = (Auth, selectedItem, countItem) => {
     return async (dispatch) => {
         if (Auth === true) {
-            console.log(123)
+            //let basket = await productAPI.getBasket(basket,productId)
+            //dispatch(actions.setBasket(basket))
+        } else {
+            dispatch(actions.addToBasket(selectedItem, countItem))
         }
-        dispatch(actions.addToBasket(selectedItem, countItem))
-        //let basket = await productAPI.getBasket(basket,productId)
-        //dispatch(actions.setBasket(basket))
-
-    };
+    }
+}
+export const updateBasket = (Auth, basket, arrObj, count) => {
+    debugger
+    return async (dispatch) => {
+        if (Auth === true) {
+            //let basket = await productAPI.getBasket(basket,productId)
+            //dispatch(actions.setBasket(basket))
+        } else {
+            //dispatch(actions.addToBasket(selectedItem, countItem))
+            let fitration = obj.cart.filter(i => JSON.stringify({ fieldId: i.fieldId }) ===
+                JSON.stringify({ fieldId: data.fieldId })) // сверяем fielId
+        }
+    }
 }
 
 
