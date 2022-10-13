@@ -12,6 +12,7 @@
     height: 60%;
     width: 60%;
     max-width: 150px;
+    border-radius: 10px;
 }
 
 .title {
@@ -34,10 +35,23 @@
     justify-content: space-between;
 }
 
+.checkbox {
+    margin: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.checkbox input {
+    width: 20px;
+    height: 20px;
+}
+
 .price {
     display: flex;
     margin-top: 15px;
     margin-left: 15px;
+    font-weight: 600;
 }
 
 .counter {
@@ -57,7 +71,8 @@
     padding: 0px;
 
 }
-.counter span{
+
+.counter span {
     color: #000;
     margin: 10px;
 }

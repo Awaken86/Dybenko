@@ -25,10 +25,8 @@ const Filter = (props) => {
                         setSelectedPriceHandler={props.setSelectedPriceHandler}
                         maxPrice={props.maxPrice}
                         minPrice={props.minPrice}
-                        actualType={props.actualType} />
-                    max:{props.maxPrice}
-                    <br />
-                    min:{props.minPrice}
+                        actualType={props.actualType}
+                    />
                     <Nav>{colorArray.map((i) => <SelectButton key={i} color={i} />)}</Nav>
                     <Button variant='dark' onClick={props.filterCleaner}>Очистить фильтр</Button>
                 </Card.Body>

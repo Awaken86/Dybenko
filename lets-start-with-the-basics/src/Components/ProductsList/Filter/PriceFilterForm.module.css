@@ -1,6 +1,14 @@
-.inputElem{
-    width: 70%;
+.containerInputs {
+    display: flex;
+    justify-content: space-between;
 }
-.PriceColor{
+
+.containerInputs input {
+    width: 45%;
+    border-radius: 8px;
+}
+
+
+.PriceColor {
     color: black;
 }

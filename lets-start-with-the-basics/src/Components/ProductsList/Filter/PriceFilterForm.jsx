@@ -79,7 +79,7 @@ export const PriceFilterForm = React.memo((props) => {
                     {({ isSubmitting }) => (
                         <Form>
                             <div>
-                                {!editMode &&
+                                {/* {!editMode &&
                                     <div onDoubleClick={activeEditMode}>
                                         <span className={style.PriceColor}>{PriceInfoState.maxPrice ? PriceInfoState.maxPrice
                                             : 'noPrice'}</span>
@@ -94,6 +94,21 @@ export const PriceFilterForm = React.memo((props) => {
                                         <ErrorMessage name="maxPrice" component="div" />
                                         <Field onChange={onMinPriceChange} value={PriceInfoState.minPrice} type="input" name="minPrice" className={style.inputElem} />
                                         <ErrorMessage name="minPrice" component="div" />
+                                    </div>
+                                } */}
+                                {editMode ?
+                                    <div onBlur={deactivateEditMode} className={style.containerInputs}>
+                                        <Field onChange={onMinPriceChange} value={PriceInfoState.minPrice} type="input" name="minPrice" />
+                                        <ErrorMessage name="minPrice" component="div" />
+                                        <Field onChange={onMaxPriceChange} value={PriceInfoState.maxPrice} type="input" name="maxPrice" />
+                                        <ErrorMessage name="maxPrice" component="div" />
+                                    </div>
+                                    :
+                                    <div onClick={activeEditMode} className={style.containerInputs}>
+                                        <Field onChange={onMinPriceChange} value={`от ${PriceInfoState.minPrice}`} type="input" name="minPrice" />
+                                        <ErrorMessage name="minPrice" component="div" />
+                                        <Field onChange={onMaxPriceChange} value={`до ${PriceInfoState.maxPrice}`} type="input" name="maxPrice" />
+                                        <ErrorMessage name="maxPrice" component="div" />
                                     </div>
                                 }
                             </div>

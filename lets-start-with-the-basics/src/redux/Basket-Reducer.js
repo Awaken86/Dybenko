@@ -48,7 +48,7 @@ export const addToBasket = (Auth, selectedItem, countItem) => {
         }
     }
 }
-export const updateBasket = (Auth, basket, arrObj, count) => {
+export const updateBasket = (Auth, basket, arrObj, NewCount) => {
     return async (dispatch) => {
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
@@ -57,9 +57,9 @@ export const updateBasket = (Auth, basket, arrObj, count) => {
             //dispatch(actions.addToBasket(selectedItem, countItem))
             let FindAndChangeCount = basket.filter((obj) => {
                 if (JSON.stringify(obj) === JSON.stringify(arrObj)) {
-                    obj.countItem = count
+                    obj.countItem = NewCount
                 }
-                return obj
+                return obj.countItem !== null
             })
             dispatch(actions.setBasket(FindAndChangeCount))
         }
