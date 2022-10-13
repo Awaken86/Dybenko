@@ -79,7 +79,7 @@ export const actions = {
 
 export const getProduct = (type, color, selectedPrice) => {
     return async (dispatch) => {
-        let data = await productAPI.getProduct(type, color,selectedPrice)
+        let data = await productAPI.getProduct(type, color, selectedPrice)
         dispatch(actions.setProduct(data.products));
         dispatch(actions.setMaxPrice(data.maxPrice))
         dispatch(actions.setMinPrice(data.minPrice))

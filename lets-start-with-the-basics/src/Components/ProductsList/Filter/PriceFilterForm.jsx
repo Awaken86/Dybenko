@@ -67,35 +67,16 @@ export const PriceFilterForm = React.memo((props) => {
         <div>
             <div>
                 <Formik
-
                     initialValues={
                         {
                             PriceInfoState
                         }
                     }
-
                     enableReinitialize={true}
                 >
                     {({ isSubmitting }) => (
                         <Form>
                             <div>
-                                {/* {!editMode &&
-                                    <div onDoubleClick={activeEditMode}>
-                                        <span className={style.PriceColor}>{PriceInfoState.maxPrice ? PriceInfoState.maxPrice
-                                            : 'noPrice'}</span>
-                                        <br />
-                                        <span className={style.PriceColor}>{PriceInfoState.minPrice ? PriceInfoState.minPrice
-                                            : 'noPrice'}</span>
-                                    </div>
-                                }
-                                {editMode &&
-                                    <div onBlur={deactivateEditMode}>
-                                        <Field onChange={onMaxPriceChange} value={PriceInfoState.maxPrice} type="input" name="maxPrice" className={style.inputElem} />
-                                        <ErrorMessage name="maxPrice" component="div" />
-                                        <Field onChange={onMinPriceChange} value={PriceInfoState.minPrice} type="input" name="minPrice" className={style.inputElem} />
-                                        <ErrorMessage name="minPrice" component="div" />
-                                    </div>
-                                } */}
                                 {editMode ?
                                     <div onBlur={deactivateEditMode} className={style.containerInputs}>
                                         <Field onChange={onMinPriceChange} value={PriceInfoState.minPrice} type="input" name="minPrice" />
@@ -105,9 +86,9 @@ export const PriceFilterForm = React.memo((props) => {
                                     </div>
                                     :
                                     <div onClick={activeEditMode} className={style.containerInputs}>
-                                        <Field onChange={onMinPriceChange} value={`от ${PriceInfoState.minPrice}`} type="input" name="minPrice" />
+                                        <Field value={`от ${PriceInfoState.minPrice}`} type="input" />
                                         <ErrorMessage name="minPrice" component="div" />
-                                        <Field onChange={onMaxPriceChange} value={`до ${PriceInfoState.maxPrice}`} type="input" name="maxPrice" />
+                                        <Field value={`до ${PriceInfoState.maxPrice}`} type="input" />
                                         <ErrorMessage name="maxPrice" component="div" />
                                     </div>
                                 }

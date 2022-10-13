@@ -89,46 +89,56 @@
 //         </Formik >
 //     );
 // }
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Container, Form, Modal, Nav } from "react-bootstrap";
+import { useEffect } from "react";
 
 const FormRegistrationAndAuthorization = (props) => {
-
-    const formik = useFormik({
-        initialValues: {
-            email: "",
-            password: "",
-            confirmPassword: "",
-        },
-        validationSchema: Yup.object({
-            email: Yup.string()
-                .email("Invalid email address")
-                .required("Required"),
-            password: Yup.string()
-                .min(5, 'Too Short!')
-                .max(25, 'Too Long!')
-                .required("Required"),
-            confirmPassword: Yup.string()
-                .test({
-                    exclusive: false,
-                    message: 'invalid password confirmation',
-                    test: function (value) {
-                        // You can access the price field with `this.parent`.
-                        if (!props.isRegistration) { return true }
-                        if (value === this.parent.password) {
-                            return value
-                        }
-                    },
-                })
-        }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-            // setFormState(values);
-        }
+    const [formState, setFormState] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
     });
+    useEffect(() => {
+
+    }, [props.isRegistration])
+
+    const formik = useFormik(
+        {
+            initialValues: {
+                email: "",
+                password: "",
+                confirmPassword: "",
+            },
+            validationSchema: Yup.object({
+                email: Yup.string()
+                    .email("Invalid email address")
+                    .required("Required"),
+                password: Yup.string()
+                    .min(5, 'Too Short!')
+                    .max(25, 'Too Long!')
+                    .required("Required"),
+                confirmPassword: Yup.string()
+                    .test({
+                        exclusive: false,
+                        message: 'invalid password confirmation',
+                        test: function (value) {
+                            // You can access the price field with `this.parent`.
+                            if (!props.isRegistration) { return true }
+                            if (value === this.parent.password) {
+                                return value
+                            }
+                        },
+                    })
+            }),
+            onSubmit: values => {
+                alert(JSON.stringify(values, null, 2));
+                // setFormState(values);
+            }
+        });
     return (
         <Nav>
             <Container>
