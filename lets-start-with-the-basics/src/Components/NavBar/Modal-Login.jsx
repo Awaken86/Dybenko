@@ -6,9 +6,11 @@ import FormRegistrationAndAuthorization from "../../Forms/FormRegistrationAndAut
 const ModalLogin = () => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    const [show, setShow] = useState(false);
     const [isRegistration, setRegistration] = useState(false);
-    
+    const [show, setShow] = useState(false);
+    const submitHandler = (values) => {
+        console.log(values)
+    }
 
     return (
         <Nav>
@@ -25,7 +27,7 @@ const ModalLogin = () => {
                         : <Button variant="dark" onClick={() => { setRegistration(true) }}>Регистрация</Button>}
                 </Modal.Header>
                 <Modal.Body>
-                    <FormRegistrationAndAuthorization handleClose={handleClose} isRegistration={isRegistration} />
+                    <FormRegistrationAndAuthorization submitHandler={submitHandler} handleClose={handleClose} isRegistration={isRegistration} />
                 </Modal.Body>
 
             </Modal>

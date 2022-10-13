@@ -89,29 +89,21 @@
 //         </Formik >
 //     );
 // }
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Container, Form, Modal, Nav } from "react-bootstrap";
-import { useEffect } from "react";
+import { Button, Container, Form, FormLabel, Modal, Nav } from "react-bootstrap";
+
 
 const FormRegistrationAndAuthorization = (props) => {
-    const [formState, setFormState] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
-    useEffect(() => {
-
-    }, [props.isRegistration])
-
     const formik = useFormik(
         {
             initialValues: {
-                email: "",
-                password: "",
-                confirmPassword: "",
+                email: '',
+                password: '',
+                confirmPassword: '',
+                rememberMe: false
             },
             validationSchema: Yup.object({
                 email: Yup.string()
@@ -135,10 +127,12 @@ const FormRegistrationAndAuthorization = (props) => {
                     })
             }),
             onSubmit: values => {
-                alert(JSON.stringify(values, null, 2));
-                // setFormState(values);
+                props.submitHandler(values)
             }
-        });
+        })
+    const cleaner = () => {
+        formik.values.confirmPassword = ''
+    }
     return (
         <Nav>
             <Container>
@@ -191,19 +185,25 @@ const FormRegistrationAndAuthorization = (props) => {
                                         <div className="text-danger">{formik.errors.confirmPassword}</div>
                                     ) : null}
                                 </Form.Text>
-                            </Form.Group> : null}
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
+                            </Form.Group> : cleaner()
+                        }
+                        <Form.Group className="mb-3" controlId="Checkbox">
+                            <Form.Check name="rememberMe" type="checkbox" onChange={formik.handleChange} value={formik.values.rememberMe}
+                            label='remember me'>
+                                
+                                
+                            </Form.Check>
+
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={props.handleClose}>Close</Button>
                         {props.isRegistration ?
                             <Button variant="primary" type="submit"
-                                onClick={values => props.setFormState(values)}>Register</Button>
+                            >Register</Button>
                             : <Button variant="primary"
                                 type="submit"
-                                onClick={values => props.setFormState(values)} >Войти</Button>}
+                            >Войти</Button>}
                     </Modal.Footer>
                 </Form>
             </Container>
