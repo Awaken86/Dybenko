@@ -8,11 +8,12 @@ import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
 import { updateBasket } from "../../redux/Basket-Reducer"
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
+    
     const findId = basket.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
     const Auth = false
-    const updateBasketHandler = (arrObj, count) => {
-        dispatch(updateBasket(Auth, basket, arrObj, count))
+    const updateBasketHandler = (arrObj, count, newForPayment) => {
+        dispatch(updateBasket(Auth, basket, arrObj, count, newForPayment))
     }
     return (
         <Container className={style.Container}>

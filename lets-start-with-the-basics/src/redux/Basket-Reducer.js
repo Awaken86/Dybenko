@@ -2,8 +2,7 @@ const ADD_TO_BASKET = 'ADD_TO_BASKET'
 const SET_BASKET = 'SET_BASKET'
 
 let initialState = {
-    basket: [],
-    userEmail: ''
+    basket: []
 }
 
 const BasketReducer = (state = initialState, action) => {
@@ -14,7 +13,8 @@ const BasketReducer = (state = initialState, action) => {
                 price: action.selectedItem.price,
                 title: action.selectedItem.title,
                 picture: action.selectedItem.picture,
-                countItem: action.countItem
+                countItem: action.countItem,
+                forPayment: action.forPayment
             }
             return {
                 // ...state,
@@ -48,16 +48,18 @@ export const addToBasket = (Auth, selectedItem, countItem) => {
         }
     }
 }
-export const updateBasket = (Auth, basket, arrObj, NewCount) => {
+export const updateBasket = (Auth, basket, arrObj, NewCount, NewForPayment) => {
     return async (dispatch) => {
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
-        } else {
+        }
+        else {
             //dispatch(actions.addToBasket(selectedItem, countItem))
             let FindAndChangeCount = basket.filter((obj) => {
                 if (JSON.stringify(obj) === JSON.stringify(arrObj)) {
                     obj.countItem = NewCount
+                    obj.forPayment = NewForPayment
                 }
                 return obj.countItem !== null
             })

@@ -3,6 +3,7 @@ import { Button, Card, Container, Form, Nav } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { FiTrash2 } from "react-icons/fi"
 import style from './Products-tile.module.css'
+import { useFormik } from "formik"
 const ProductsTile = (props) => {
     //отнять
     const subtractFromQuantity = () => {
@@ -20,13 +21,26 @@ const ProductsTile = (props) => {
     const deleteProduct = () => {
         props.updateBasket(props.arrObj, null)
     }
+    console.log(props.arrObj)
+    //добавить к продуктам для оплаты
+    if (!props.arrObj.forPayment) {
+        props.arrObj.forPayment = false
+    }
     return (
         <Container>
             <Card className={style.card} >
                 <Card.Body className={style.CardBody}>
-                    <Form.Group className={style.checkbox} controlId="PodTileCheckBox">
-                        <Form.Check type="checkbox" />
+
+                    <Form.Group
+                        className={style.checkbox}
+                        controlId="PodTileCheckBox"
+                    >
+                        <Form.Check type="checkbox" value={props.arrObj.forPayment}
+                            onClick={() => {
+                                props.updateBasket(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
+                            }} />
                     </Form.Group>
+
                     <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + props.arrObj.picture} />
                     <Card.Title >
                         <Nav className={style.title}>
