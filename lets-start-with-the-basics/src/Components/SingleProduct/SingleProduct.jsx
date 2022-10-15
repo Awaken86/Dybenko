@@ -18,7 +18,7 @@ const SingleProduct = (props) => {
         dispatch(getOneProduct(url))
     }, [])
     const addToBasketHandler = () => {
-        dispatch(addToBasket(Auth, selectedItem, countItem))
+        dispatch(addToBasket(Auth, selectedItem, countItem, basket))
     }
 
     return (

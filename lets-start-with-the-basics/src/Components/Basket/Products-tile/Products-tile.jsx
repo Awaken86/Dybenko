@@ -23,8 +23,8 @@ const ProductsTile = (props) => {
     }
     console.log(props.arrObj)
     //добавить к продуктам для оплаты
-    if (!props.arrObj.forPayment) {
-        props.arrObj.forPayment = false
+    const addTofPaymentBasket = () => {
+        //Payment(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
     }
     return (
         <Container>
@@ -35,9 +35,9 @@ const ProductsTile = (props) => {
                         className={style.checkbox}
                         controlId="PodTileCheckBox"
                     >
-                        <Form.Check type="checkbox" value={props.arrObj.forPayment}
+                        <Form.Check type="checkbox"
                             onClick={() => {
-                                props.updateBasket(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
+                                addTofPaymentBasket()
                             }} />
                     </Form.Group>
 

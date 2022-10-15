@@ -1,3 +1,4 @@
+
 const ADD_TO_BASKET = 'ADD_TO_BASKET'
 const SET_BASKET = 'SET_BASKET'
 
@@ -8,18 +9,10 @@ let initialState = {
 const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_BASKET: {
-            const createProductCell = {
-                id: action.selectedItem._id,
-                price: action.selectedItem.price,
-                title: action.selectedItem.title,
-                picture: action.selectedItem.picture,
-                countItem: action.countItem,
-                forPayment: action.forPayment
-            }
             return {
                 // ...state,
                 // basket: []
-                ...state, basket: [createProductCell, ...state.basket]
+                ...state, basket: [action.selectedItem, ...state.basket]
             }
         }
         case SET_BASKET: {
@@ -34,22 +27,48 @@ const BasketReducer = (state = initialState, action) => {
     }
 }
 export const actions = {
-    addToBasket: (selectedItem, countItem) => ({ type: ADD_TO_BASKET, selectedItem, countItem }),
+    addToBasket: (selectedItem) => ({ type: ADD_TO_BASKET, selectedItem }),
     setBasket: (newBasket) => ({ type: SET_BASKET, newBasket })
 }
 
-export const addToBasket = (Auth, selectedItem, countItem) => {
+export const addToBasket = (Auth, selectedItem, countItem, basket) => {
     return async (dispatch) => {
+        const newSelectedItem = {
+            id: selectedItem._id,
+            price: selectedItem.price,
+            title: selectedItem.title,
+            picture: selectedItem.picture,
+            countItem: countItem
+        }
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
         } else {
-            dispatch(actions.addToBasket(selectedItem, countItem))
+            let findDuplicate = basket.filter((obj) => {
+                console.log(obj, newSelectedItem)
+                if (obj.id === newSelectedItem.id) {
+                    newSelectedItem.countItem = obj.countItem + countItem
+                    return obj
+                } else {
+                    return null
+                }
+            })
+            if (findDuplicate.length !== 0) {
+                updateBasket(Auth, basket, newSelectedItem, newSelectedItem.countItem)
+                    (console.log("1 updateBasket"))
+            } else {
+                dispatch(actions.addToBasket(newSelectedItem))
+                    (console.log("2 addToBasket"))
+            }
         }
+
     }
 }
-export const updateBasket = (Auth, basket, arrObj, NewCount, NewForPayment) => {
+export const updateBasket = (Auth, basket, arrObj, NewCount) => {
+    debugger
+    console.log("updateBasket")
     return async (dispatch) => {
+        let newBasket
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
@@ -57,14 +76,15 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, NewForPayment) => {
         else {
             //dispatch(actions.addToBasket(selectedItem, countItem))
             let FindAndChangeCount = basket.filter((obj) => {
-                if (JSON.stringify(obj) === JSON.stringify(arrObj)) {
+                if (obj.id === arrObj.id) {
+                    console.log(obj.countItem, NewCount)
                     obj.countItem = NewCount
-                    obj.forPayment = NewForPayment
                 }
                 return obj.countItem !== null
             })
-            dispatch(actions.setBasket(FindAndChangeCount))
+            newBasket = FindAndChangeCount
         }
+        dispatch(actions.setBasket(newBasket))
     }
 }
 

@@ -8,7 +8,7 @@ import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
 import { updateBasket } from "../../redux/Basket-Reducer"
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
-    
+    console.log(basket)
     const findId = basket.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
     const Auth = false

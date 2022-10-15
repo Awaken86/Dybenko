@@ -8,8 +8,7 @@ const Product = new mongoose.Schema({
     color: { type: String, required: true },
     cssColor: { type: String, required: true },
     description: { type: String, required: true },
-    picture: { type: String },
-    forPayment: { type: Boolean }
+    picture: { type: String }
 })
 
 export default mongoose.model('Product', Product);
