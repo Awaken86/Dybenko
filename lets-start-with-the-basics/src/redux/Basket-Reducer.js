@@ -23,7 +23,6 @@ const BasketReducer = (state = initialState, action) => {
         }
         default:
             return state;
-
     }
 }
 export const actions = {
@@ -33,40 +32,36 @@ export const actions = {
 
 export const addToBasket = (Auth, selectedItem, countItem, basket) => {
     return async (dispatch) => {
-        const newSelectedItem = {
+        let newSelectedItem = {
             id: selectedItem._id,
             price: selectedItem.price,
             title: selectedItem.title,
             picture: selectedItem.picture,
             countItem: countItem
         }
+        let NewCount
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
         } else {
             let findDuplicate = basket.filter((obj) => {
-                console.log(obj, newSelectedItem)
                 if (obj.id === newSelectedItem.id) {
-                    newSelectedItem.countItem = obj.countItem + countItem
+                    NewCount = obj.countItem + countItem
                     return obj
                 } else {
                     return null
                 }
             })
             if (findDuplicate.length !== 0) {
-                updateBasket(Auth, basket, newSelectedItem, newSelectedItem.countItem)
-                    (console.log("1 updateBasket"))
+                dispatch(updateBasket(Auth, basket, newSelectedItem, NewCount))
             } else {
                 dispatch(actions.addToBasket(newSelectedItem))
-                    (console.log("2 addToBasket"))
             }
         }
 
     }
 }
 export const updateBasket = (Auth, basket, arrObj, NewCount) => {
-    debugger
-    console.log("updateBasket")
     return async (dispatch) => {
         let newBasket
         if (Auth === true) {
@@ -77,7 +72,6 @@ export const updateBasket = (Auth, basket, arrObj, NewCount) => {
             //dispatch(actions.addToBasket(selectedItem, countItem))
             let FindAndChangeCount = basket.filter((obj) => {
                 if (obj.id === arrObj.id) {
-                    console.log(obj.countItem, NewCount)
                     obj.countItem = NewCount
                 }
                 return obj.countItem !== null

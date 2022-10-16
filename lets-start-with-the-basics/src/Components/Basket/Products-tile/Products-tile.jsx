@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button, Card, Container, Form, Nav } from "react-bootstrap"
-import { useSelector } from "react-redux"
 import { FiTrash2 } from "react-icons/fi"
 import style from './Products-tile.module.css'
-import { useFormik } from "formik"
 const ProductsTile = (props) => {
     //отнять
     const subtractFromQuantity = () => {
@@ -21,10 +19,9 @@ const ProductsTile = (props) => {
     const deleteProduct = () => {
         props.updateBasket(props.arrObj, null)
     }
-    console.log(props.arrObj)
     //добавить к продуктам для оплаты
     const addTofPaymentBasket = () => {
-        //Payment(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
+        //props.updateBasket(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
     }
     return (
         <Container>

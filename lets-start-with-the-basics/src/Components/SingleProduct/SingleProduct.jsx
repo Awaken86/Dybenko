@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image, Nav, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from '../../redux/Basket-Reducer';
 import { getOneProduct } from '../../redux/Product-Reducer';
@@ -20,7 +20,18 @@ const SingleProduct = (props) => {
     const addToBasketHandler = () => {
         dispatch(addToBasket(Auth, selectedItem, countItem, basket))
     }
-
+    //отнять
+    const subtractFromQuantity = () => {
+        if (countItem === 1) {
+            return false
+        } else {
+            setCountItem(countItem - 1)
+        }
+    }
+    //прибавить
+    const addToQuantity = () => {
+        setCountItem(countItem + 1)
+    }
     return (
         <Container className={style.Container} style={{ marginTop: '50px' }} >
             <Row>
@@ -29,7 +40,13 @@ const SingleProduct = (props) => {
                 </Col>
                 <Col sm={12} xxl={8} lg={7} md={6}>
                     <div className={style.title}><span className={style.title}>{selectedItem.title}</span></div>
-                    <div className={style.price}>{selectedItem.price}₽ {countItem}кл
+                    <div className={style.price}>
+                        {selectedItem.price}₽
+                        <Nav className={style.counter}>
+                            <Button variant="light" onClick={subtractFromQuantity}>-</Button>
+                            <span>{countItem}кл</span>
+                            <Button variant="light" onClick={addToQuantity}>+</Button>
+                        </Nav>
                         <Button className={style.button} variant="dark" onClick={() => { addToBasketHandler() }}>В корзину</Button>
                     </div>
                     <h5>Описание:</h5>
