@@ -4,13 +4,15 @@ import productReducer from "./Product-Reducer";
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
 import BasketReducer from "./Basket-Reducer";
+import AuthReducer from "./Auth-Reducer";
 
 
 
 
 const reducers = combineReducers({
     ProductPage: productReducer,
-    BasketPage: BasketReducer
+    BasketPage: BasketReducer,
+    AuthPage: AuthReducer
 })
 
 const reducersPersistConfig = {

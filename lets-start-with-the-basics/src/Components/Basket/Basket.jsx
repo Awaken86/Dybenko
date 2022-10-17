@@ -30,7 +30,7 @@ const Basket = () => {
                         }
                         )}
                     </Nav>
-                    <OrderPriceAndBuyer allPrice={allPrice} />
+                    <OrderPriceAndBuyer allPrice={allPrice} Auth={Auth} />
                 </Nav> :
                 <Nav >
                     <Nav className={style.NavEmptyBasket}>
