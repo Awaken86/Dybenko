@@ -69,6 +69,14 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
         }
+        if (ChangeForPayment === "All") {
+            debugger
+            let changeForPayment = basket.filter((obj) => {
+                obj.forPayment = !obj.forPayment
+                return obj
+            })
+            newBasket = changeForPayment
+        }
         if (ChangeForPayment) {
             let changeForPayment = basket.filter((obj) => {
                 if (obj.id === arrObj.id) {

@@ -6,23 +6,31 @@ import ProductTile from "./Products-tile/Products-tile"
 import { BsCart4 } from "react-icons/bs";
 import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
 import { updateBasket } from "../../redux/Basket-Reducer"
+import { useEffect } from 'react';
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
     const findId = basket.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
     const Auth = false
-    console.log(basket)
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
         dispatch(updateBasket(Auth, basket, arrObj, count, ChangeForPayment))
+    }
+    let allPrice = 0
+    const sumPrice = (price, countItem) => {
+        allPrice = allPrice + price * countItem
     }
     return (
         <Container className={style.Container}>
             {findId ?
                 <Nav className={style.NavBasketContainer}>
                     <Nav>
-                        {basket.map(arrObj => <ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />)}
+                        {basket.map(arrObj => {
+                            if (arrObj.forPayment) { sumPrice(arrObj.price, arrObj.countItem) }
+                            return < ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />
+                        }
+                        )}
                     </Nav>
-                    <OrderPriceAndBuyer />
+                    <OrderPriceAndBuyer allPrice={allPrice} />
                 </Nav> :
                 <Nav >
                     <Nav className={style.NavEmptyBasket}>

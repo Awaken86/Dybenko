@@ -32,6 +32,7 @@ const ProductsTile = (props) => {
                         className={style.checkbox}
                     >
                         <Form.Check type="checkbox"
+                            readOnly={true}
                             checked={props.arrObj.forPayment}
                             onClick={() => {
                                 addTofPaymentBasket()
