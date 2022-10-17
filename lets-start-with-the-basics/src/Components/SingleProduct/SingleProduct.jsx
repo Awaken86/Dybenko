@@ -16,7 +16,7 @@ const SingleProduct = (props) => {
     useEffect(() => {
         const url = window.location.pathname
         dispatch(getOneProduct(url))
-    }, [])
+    })
     const addToBasketHandler = () => {
         dispatch(addToBasket(Auth, selectedItem, countItem, basket))
     }

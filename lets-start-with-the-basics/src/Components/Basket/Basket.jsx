@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import React from 'react';
 import { Container, Nav } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import style from './Basket.module.css'
@@ -11,8 +11,9 @@ const Basket = () => {
     const findId = basket.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
     const Auth = false
-    const updateBasketHandler = (arrObj, count, newForPayment) => {
-        dispatch(updateBasket(Auth, basket, arrObj, count, newForPayment))
+    console.log(basket)
+    const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
+        dispatch(updateBasket(Auth, basket, arrObj, count, ChangeForPayment))
     }
     return (
         <Container className={style.Container}>

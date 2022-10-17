@@ -37,7 +37,8 @@ export const addToBasket = (Auth, selectedItem, countItem, basket) => {
             price: selectedItem.price,
             title: selectedItem.title,
             picture: selectedItem.picture,
-            countItem: countItem
+            countItem: countItem,
+            forPayment: false
         }
         let NewCount
         if (Auth === true) {
@@ -61,12 +62,21 @@ export const addToBasket = (Auth, selectedItem, countItem, basket) => {
 
     }
 }
-export const updateBasket = (Auth, basket, arrObj, NewCount) => {
+export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) => {
     return async (dispatch) => {
         let newBasket
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
+        }
+        if (ChangeForPayment) {
+            let changeForPayment = basket.filter((obj) => {
+                if (obj.id === arrObj.id) {
+                    obj.forPayment = !obj.forPayment
+                }
+                return obj
+            })
+            newBasket = changeForPayment
         }
         else {
             //dispatch(actions.addToBasket(selectedItem, countItem))

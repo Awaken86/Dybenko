@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React from 'react';
 import { Button, Card, Container, Form, Nav } from "react-bootstrap"
 import { FiTrash2 } from "react-icons/fi"
 import style from './Products-tile.module.css'
@@ -21,7 +21,7 @@ const ProductsTile = (props) => {
     }
     //добавить к продуктам для оплаты
     const addTofPaymentBasket = () => {
-        //props.updateBasket(props.arrObj, props.arrObj.countItem, !props.arrObj.forPayment)
+        props.updateBasket(props.arrObj, '', true)
     }
     return (
         <Container>
@@ -30,14 +30,13 @@ const ProductsTile = (props) => {
 
                     <Form.Group
                         className={style.checkbox}
-                        controlId="PodTileCheckBox"
                     >
                         <Form.Check type="checkbox"
+                            checked={props.arrObj.forPayment}
                             onClick={() => {
                                 addTofPaymentBasket()
                             }} />
                     </Form.Group>
-
                     <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + props.arrObj.picture} />
                     <Card.Title >
                         <Nav className={style.title}>
