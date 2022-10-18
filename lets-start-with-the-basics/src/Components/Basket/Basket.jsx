@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav } from "react-bootstrap"
+import { Button, Card, Container, Form, Nav } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import style from './Basket.module.css'
 import ProductTile from "./Products-tile/Products-tile"
@@ -7,6 +7,7 @@ import { BsCart4 } from "react-icons/bs";
 import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
 import { updateBasket } from "../../redux/Basket-Reducer"
 import { useEffect } from 'react';
+import { FiTrash2 } from 'react-icons/fi';
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
     const findId = basket.find(obj => obj.id !== undefined)
@@ -22,16 +23,38 @@ const Basket = () => {
     return (
         <Container className={style.Container}>
             {findId ?
-                <Nav className={style.NavBasketContainer}>
-                    <Nav>
-                        {basket.map(arrObj => {
-                            if (arrObj.forPayment) { sumPrice(arrObj.price, arrObj.countItem) }
-                            return < ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />
-                        }
-                        )}
-                    </Nav>
-                    <OrderPriceAndBuyer allPrice={allPrice} Auth={Auth} />
-                </Nav> :
+                <>
+                    <Nav className={style.NavBasketContainer}>
+                        <Nav>
+                            <Container>
+                                <Card className={style.card} >
+                                    <Card.Body className={style.CardBody}>
+                                        <Form.Group
+                                            className={style.checkbox}
+                                        >
+                                            <Form.Check type="checkbox"
+                                                readOnly={true}
+                                                //checked={''}
+                                                onClick={() => {
+                                                    dispatch(updateBasket(Auth, basket, '', '', "AllChange"))
+                                                }} />
+                                        </Form.Group>
+                                        <Nav className={style.delete}>
+                                            <Button variant="light" onClick={() => {
+                                                dispatch(updateBasket(Auth, basket, '', '', "DeleteSelected"))
+                                            }}><FiTrash2 /></Button>
+                                        </Nav>
+                                    </Card.Body>
+                                </Card>
+                            </Container>
+                            {basket.map(arrObj => {
+                                if (arrObj.forPayment) { sumPrice(arrObj.price, arrObj.countItem) }
+                                return < ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />
+                            }
+                            )}
+                        </Nav>
+                        <OrderPriceAndBuyer allPrice={allPrice} Auth={Auth} />
+                    </Nav></> :
                 <Nav >
                     <Nav className={style.NavEmptyBasket}>
                         <BsCart4 className={style.cardIcon}></BsCart4>

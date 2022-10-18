@@ -21,13 +21,12 @@ const ProductsTile = (props) => {
     }
     //добавить к продуктам для оплаты
     const addTofPaymentBasket = () => {
-        props.updateBasket(props.arrObj, '', true)
+        props.updateBasket(props.arrObj, '', "true")
     }
     return (
         <Container>
             <Card className={style.card} >
                 <Card.Body className={style.CardBody}>
-
                     <Form.Group
                         className={style.checkbox}
                     >

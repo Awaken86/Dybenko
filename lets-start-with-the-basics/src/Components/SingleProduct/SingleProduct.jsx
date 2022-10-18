@@ -44,11 +44,12 @@ const SingleProduct = (props) => {
                         {selectedItem.price}₽
                         <Nav className={style.counter}>
                             <Button variant="light" onClick={subtractFromQuantity}>-</Button>
-                            <span>{countItem}кл</span>
+                            <span>{countItem}.шт</span>
                             <Button variant="light" onClick={addToQuantity}>+</Button>
                         </Nav>
                         <Button className={style.button} variant="dark" onClick={() => { addToBasketHandler() }}>В корзину</Button>
                     </div>
+                    
                     <h5>Описание:</h5>
                     <span className={style.description}>{selectedItem.description}</span>
                 </Col>

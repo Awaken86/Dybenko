@@ -68,33 +68,44 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)
             //dispatch(actions.setBasket(basket))
-        }
-        if (ChangeForPayment === "All") {
-            debugger
-            let changeForPayment = basket.filter((obj) => {
-                obj.forPayment = !obj.forPayment
-                return obj
-            })
-            newBasket = changeForPayment
-        }
-        if (ChangeForPayment) {
-            let changeForPayment = basket.filter((obj) => {
-                if (obj.id === arrObj.id) {
+        } else {
+            //изменить forPayment у всех товаров
+            if (ChangeForPayment === "AllChange") {
+                let changeForPayment = basket.filter((obj) => {
                     obj.forPayment = !obj.forPayment
-                }
-                return obj
-            })
-            newBasket = changeForPayment
-        }
-        else {
-            //dispatch(actions.addToBasket(selectedItem, countItem))
-            let FindAndChangeCount = basket.filter((obj) => {
-                if (obj.id === arrObj.id) {
-                    obj.countItem = NewCount
-                }
-                return obj.countItem !== null
-            })
-            newBasket = FindAndChangeCount
+                    return obj
+                })
+                newBasket = changeForPayment
+            }
+            //удалить выбранное
+            if (ChangeForPayment === "DeleteSelected") {
+                let changeForPayment = basket.filter((obj) => {
+                    console.log(obj)
+                    return obj.forPayment !== true
+                })
+                newBasket = changeForPayment
+            }
+            //изменить forPayment
+            if (ChangeForPayment === 'true') {
+                let changeForPayment = basket.filter((obj) => {
+                    if (obj.id === arrObj.id) {
+                        obj.forPayment = !obj.forPayment
+                    }
+                    return obj
+                })
+                newBasket = changeForPayment
+            }
+            //изменить количество
+            if (NewCount) {
+                //dispatch(actions.addToBasket(selectedItem, countItem))
+                let FindAndChangeCount = basket.filter((obj) => {
+                    if (obj.id === arrObj.id) {
+                        obj.countItem = NewCount
+                    }
+                    return obj.countItem !== null
+                })
+                newBasket = FindAndChangeCount
+            }
         }
         dispatch(actions.setBasket(newBasket))
     }
