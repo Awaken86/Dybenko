@@ -36,7 +36,7 @@ const SingleProduct = (props) => {
         <Container className={style.Container} style={{ marginTop: '50px' }} >
             <Row>
                 <Col sm={12} xxl={4} lg={5} md={6}>
-                    <Image fluid={true} thumbnail={true} variant="top" src={"http://localhost:3001/" + selectedItem.picture} />
+                    <Image fluid={true} thumbnail={true} variant="top" src={selectedItem.picture} />
                 </Col>
                 <Col sm={12} xxl={8} lg={7} md={6}>
                     <div className={style.title}><span className={style.title}>{selectedItem.title}</span></div>

@@ -5,7 +5,7 @@ class ProductController {
     async create(req, res) {
         try {
             console.log(req)
-            const product = await ProductService.create(req.body, req.files.picture)
+            const product = await ProductService.create(req.body)
             return res.json(product);
         } catch (e) {
             console.log(e)

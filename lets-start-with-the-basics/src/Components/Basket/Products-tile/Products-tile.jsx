@@ -37,7 +37,7 @@ const ProductsTile = (props) => {
                                 addTofPaymentBasket()
                             }} />
                     </Form.Group>
-                    <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + props.arrObj.picture} />
+                    <Card.Img className={style.imgCard} variant="top" src={props.arrObj.picture} />
                     <Card.Title >
                         <Nav className={style.title}>
                             {props.arrObj.title}

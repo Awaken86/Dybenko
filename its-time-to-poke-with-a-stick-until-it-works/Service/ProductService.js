@@ -21,9 +21,8 @@ const MinPrice = (products) => {
 }
 
 class ProductService {
-    async create(product, picture) {
-        const fileName = FileService.saveFile(picture)
-        const createdProduct = await Product.create({ ...product, picture: fileName })
+    async create(product) {
+        const createdProduct = await Product.create(product)
         return createdProduct
     }
     async getAll(data) {

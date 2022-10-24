@@ -84,14 +84,13 @@ export const getProduct = (type, color, selectedPrice) => {
         dispatch(actions.setMaxPrice(data.maxPrice))
         dispatch(actions.setMinPrice(data.minPrice))
     }
-};
-
+}
 
 export const getOneProduct = (url) => {
     return async (dispatch) => {
         let data = await productAPI.getOneProduct(url)
         dispatch(actions.setOneProduct(data));
-    };
+    }
 }
 
 export default ProductReducer;

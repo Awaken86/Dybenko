@@ -6,8 +6,9 @@ import cors from './middleware/cors.middleware.js';
 
 
 export default cors
-const PORT = 3001
-const DB_URL = `mongodb+srv://user:user@cluster0.1okoj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const PORT = 27017
+// const DB_URL = "mongodb://127.0.0.1:27017/local"
+const DB_URL = `mongodb+srv://user:user@test0.7rqrflb.mongodb.net/?retryWrites=true&w=majority`
 
 const app = express()
 

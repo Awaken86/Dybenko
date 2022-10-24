@@ -49,7 +49,7 @@ const ProductsList = (props) => {
                 {
                     product.map(p => <Card className={style.card} key={p._id}>
                         <Nav as={Link} to={`/product/${p._id}`}>
-                            <Card.Img className={style.imgCard} variant="top" src={"http://localhost:3001/" + p.picture} />
+                            <Card.Img className={style.imgCard} variant="top" src={p.picture} />
                         </Nav>
                         <Card.Body>
                             <Card.Title className={style.title}>{p.title}</Card.Title>
