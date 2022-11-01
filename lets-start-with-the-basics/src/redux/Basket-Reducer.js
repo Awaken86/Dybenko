@@ -64,7 +64,6 @@ export const addToBasket = (Auth, selectedItem, countItem, basket) => {
     }
 }
 export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) => {
-    debugger
     return async (dispatch) => {
         let newBasket
         if (Auth === true) {
@@ -73,7 +72,6 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
         } else {
             //изменить forPayment у всех товаров
             if (ChangeForPayment === "AllChange") {
-                debugger
                 let changeForPayment = basket.filter((obj) => {
                     obj.forPayment = !obj.forPayment
                     return obj
@@ -82,7 +80,6 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
             }
             //удалить выбранное
             if (ChangeForPayment === "DeleteSelected") {
-                debugger
                 let changeForPayment = basket.filter((obj) => {
                     console.log(obj)
                     return obj.forPayment !== true
@@ -91,7 +88,6 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
             }
             //изменить forPayment
             if (ChangeForPayment === 'true') {
-                debugger
                 let changeForPayment = basket.filter((obj) => {
                     if (obj.id === arrObj.id) {
                         obj.forPayment = !obj.forPayment
@@ -101,8 +97,7 @@ export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) =
                 newBasket = changeForPayment
             }
             //изменить количество
-            if (NewCount !== undefined) {
-                debugger
+            if (NewCount === null || NewCount > 0) {
                 //dispatch(actions.addToBasket(selectedItem, countItem))
                 let FindAndChangeCount = basket.filter((obj) => {
                     if (obj.id === arrObj.id) {
