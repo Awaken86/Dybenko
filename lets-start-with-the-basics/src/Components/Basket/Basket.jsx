@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
-    const findId = basket.find(obj => obj.id !== undefined)
+    const findId = basket?.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
     const Auth = false
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
@@ -49,7 +49,7 @@ const Basket = () => {
                             </Container>
                             {basket.map(arrObj => {
                                 if (arrObj.forPayment) { sumPrice(arrObj.price, arrObj.countItem) }
-                                return < ProductTile updateBasket={updateBasketHandler} arrObj={arrObj} />
+                                return < ProductTile key={arrObj.id} updateBasket={updateBasketHandler} arrObj={arrObj} />
                             }
                             )}
                         </Nav>

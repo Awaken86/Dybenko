@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const NavBar = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
-    const count = basket.length
+    const count = basket?.length
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container className={style.containerNavBar}>
