@@ -20,3 +20,17 @@ export const productAPI = {
             });
     }
 }
+export const UserAPI = {
+    userRegistration(email, password) {
+        return instance.post(`/createUser`, { email, password })
+            .then(response => {
+                return response.data;
+            });
+    },
+    userLogin(email, password) {
+        return instance.post(`/login`, { email, password })
+            .then(response => {
+                return response.data;
+            });
+    }
+}

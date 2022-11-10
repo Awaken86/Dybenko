@@ -3,7 +3,7 @@ import { Modal, Button, Nav } from "react-bootstrap";
 import { BiUser } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import FormRegistrationAndAuthorization from "../../Forms/FormRegistrationAndAuthorization";
-import { actions } from "../../redux/Auth-Reducer";
+import { actions, loginThunk, RegistrationThank } from "../../redux/Auth-Reducer";
 
 const ModalLogin = () => {
     const showRegistration = useSelector((state) => state.AuthPage.showRegistration)
@@ -16,7 +16,11 @@ const ModalLogin = () => {
     }
     const [isRegistration, setRegistration] = useState(false);
     const submitHandler = (values) => {
-        console.log(values)
+        let authorizationData = values
+        delete authorizationData.confirmPassword
+        isRegistration ?
+            dispatch(RegistrationThank(authorizationData)) :
+            dispatch(loginThunk(authorizationData))
     }
     return (
         <Nav>

@@ -6,13 +6,15 @@ import ProductTile from "./Products-tile/Products-tile"
 import { BsCart4 } from "react-icons/bs";
 import OrderPriceAndBuyer from "./Order-price-and-buyer/Order-price-and-buyer"
 import { updateBasket } from "../../redux/Basket-Reducer"
-import { useEffect } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
+
+
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
+    console.log(basket)
     const findId = basket?.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
-    const Auth = false
+    const Auth = useSelector((state) => state.AuthPage.Auth)
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
         dispatch(updateBasket(Auth, basket, arrObj, count, ChangeForPayment))
     }

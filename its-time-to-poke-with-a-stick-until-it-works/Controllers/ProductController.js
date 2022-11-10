@@ -4,7 +4,6 @@ import ProductService from "../Service/ProductService.js";
 class ProductController {
     async create(req, res) {
         try {
-            console.log(req)
             const product = await ProductService.create(req.body)
             return res.json(product);
         } catch (e) {
