@@ -34,9 +34,10 @@ export const UserAPI = {
             });
     },
     autoAuth(token) {
-        return instance.get(`/autoAuth`, { token })
+        return instance.get(`/autoAuth`, { headers: { Authorization: `Bearer ${token}` } })
             .then(response => {
                 return response.data;
             });
     }
+
 }

@@ -18,6 +18,7 @@ const authMiddleware = (req, res, next) => {
         next()
     } catch (e) {
         return res.status(401).json({ message: e, resultCode: 1 })
+
     }
 }
 

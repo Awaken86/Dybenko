@@ -63,7 +63,7 @@ class UserService {
     //авто-вход
     async autoAuth(data) {
         try {
-            const user = await regForm.findOne({ _id: data.user.id }) // ищем email пользователя в бд
+            const user = await UserSchema.findOne({ _id: data.user.id }) // ищем email пользователя в бд
             const token = jwt.sign({ id: user.id }, "bla_bla", { expiresIn: "48h" })// формируем новый токен
             return {  // возвращаем токен и необходимую информацию
                 resultCode: 0,

@@ -88,7 +88,7 @@ export const loginThunk = (UserData) => async (dispatch, getState) => {
     const response = await UserAPI.userLogin(UserData.email, UserData.password)
     if (response.resultCode === 0) {
         dispatch(actions.setUser(response.user))
-        dispatch(authChangerThunk(response.token))
+        dispatch(actions.setToken(response.token))
         //если rememberMe = true сохраняем токен
         const basket = (getState().BasketPage.basket) //получаем корзину
         // basket?.length > 0 && dispatch(addToBasket)
@@ -102,22 +102,21 @@ export const loginThunk = (UserData) => async (dispatch, getState) => {
 export const autoAuthThunk = () => async (dispatch, getState) => {
     try {
         const token = (getState().AuthPage.token)
-        dispatch(actions.isLoading(true))
-        debugger
-        const data = await UserAPI.autoAuth(token)
-        debugger
-        dispatch(actions.setUser(data.user))
-        dispatch(actions.setToken(data.token))
-        dispatch(authChangerThunk(data.token))
-        dispatch(actions.isLoading(false))
-        console.log('Authorization acces')
+        if (!!token) {
+            dispatch(actions.isLoading(true))
+            const data = await UserAPI.autoAuth(token)
+            dispatch(actions.setUser(data.user))
+            dispatch(setTokenAndAuthThunk(data.token))
+            dispatch(actions.isLoading(false))
+            console.log('Authorization acces')
+        }
     } catch (e) {
         dispatch(actions.isLoading(false))
-        dispatch(actions.setToken(''))
-        dispatch(authChangerThunk(''))
+        dispatch(setTokenAndAuthThunk(''))
     }
 }
-export const authChangerThunk = (token) => async (dispatch) => {
+export const setTokenAndAuthThunk = (token) => async (dispatch) => {
+    dispatch(actions.setToken(token))
     dispatch(actions.setAuth(!!token))
 }
 
