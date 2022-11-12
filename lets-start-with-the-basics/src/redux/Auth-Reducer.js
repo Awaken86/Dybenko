@@ -1,11 +1,20 @@
 import { UserAPI } from "../api/api";
 
 const SET_SHOW_REGISTRATION = 'SET_SHOW_REGISTRATION'
+const SET_USER = 'SET_USER'
+const SET_TOKEN = 'SET_TOKEN'
+const SET_AUTH = 'SET_AUTH'
+const IS_LOADING = 'IS_LOADING'
 
 let initialState = {
     showRegistration: false,
     Auth: false,
-    token: ''
+    User: {
+        id: '',
+        email: ''
+    },
+    token: '',
+    isLoading: false
 };
 
 
@@ -19,14 +28,40 @@ const AuthReducer = (state = initialState, action) => {
                 showRegistration: action.showRegistration
             }
         }
+        case SET_USER: {
+            return {
+                ...state,
+                User: action.user
+            }
+        }
+        case SET_TOKEN: {
+            return {
+                ...state,
+                token: action.token
+            }
+        }
+        case SET_AUTH: {
+            return {
+                ...state,
+                Auth: action.Auth
+            }
+        }
+        case IS_LOADING: {
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
+        }
         default:
             return state;
     }
 }
 export const actions = {
     setShowRegistration: (showRegistration) => ({ type: SET_SHOW_REGISTRATION, showRegistration }),
-    setUser: (user) => ({ type: SET_SHOW_REGISTRATION, user }),
-    setToken: (token) => ({ type: SET_SHOW_REGISTRATION, token })
+    setUser: (user) => ({ type: SET_USER, user }),
+    setToken: (token) => ({ type: SET_TOKEN, token }),
+    setAuth: (Auth) => ({ type: SET_AUTH, Auth }),
+    isLoading: (isLoading) => ({ type: IS_LOADING, isLoading })
 }
 
 // регистрация
@@ -48,33 +83,43 @@ export const RegistrationThank = (values) => async (dispatch) => {
 
 }
 // логин
-export const loginThunk = (UserData) => async (dispatch) => {
+export const loginThunk = (UserData) => async (dispatch, getState) => {
     console.log('login')
     const response = await UserAPI.userLogin(UserData.email, UserData.password)
     if (response.resultCode === 0) {
         dispatch(actions.setUser(response.user))
+        dispatch(authChangerThunk(response.token))
         //если rememberMe = true сохраняем токен
-        dispatch(actions.setToken(response.token))
+        const basket = (getState().BasketPage.basket) //получаем корзину
+        // basket?.length > 0 && dispatch(addToBasket)
+        UserData.rememberMe && dispatch(actions.setToken(response.token))
     } else {
         // dispatch(errorMessage(response.data.message))
         console.log('error loginThunk')
     }
 }
-// //авторизация по токену
-// export const autoAuthThunk = () => async (dispatch) => {
-//     try {
-//         dispatch(toggleinProcces(true))
-//         const response = await authAPI.autoAuth()
-//         dispatch(setUser(response.data.user))
-//         localStorage.setItem('token', response.data.token)
-//         dispatch(toggleinProcces(false))
-//         console.log('Authorization acces')
-//     } catch (e) {
-//         dispatch(toggleinProcces(false))
-//         localStorage.removeItem('token')
-//     }
-// }
-
+//авторизация по токену
+export const autoAuthThunk = () => async (dispatch, getState) => {
+    try {
+        const token = (getState().AuthPage.token)
+        dispatch(actions.isLoading(true))
+        debugger
+        const data = await UserAPI.autoAuth(token)
+        debugger
+        dispatch(actions.setUser(data.user))
+        dispatch(actions.setToken(data.token))
+        dispatch(authChangerThunk(data.token))
+        dispatch(actions.isLoading(false))
+        console.log('Authorization acces')
+    } catch (e) {
+        dispatch(actions.isLoading(false))
+        dispatch(actions.setToken(''))
+        dispatch(authChangerThunk(''))
+    }
+}
+export const authChangerThunk = (token) => async (dispatch) => {
+    dispatch(actions.setAuth(!!token))
+}
 
 
 

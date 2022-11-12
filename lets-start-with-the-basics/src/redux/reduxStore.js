@@ -5,21 +5,28 @@ import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
 import BasketReducer from "./Basket-Reducer";
 import AuthReducer from "./Auth-Reducer";
-
-
-
-
-const reducers = combineReducers({
-    ProductPage: productReducer,
-    BasketPage: BasketReducer,
-    AuthPage: AuthReducer
-})
+import appReducer from "./app-Reducer";
 
 const reducersPersistConfig = {
     key: 'root',
     storage: storage,
     whitelist: ['BasketPage']
 }
+const AuthReducerPersistConfig = {
+    key: 'auth',
+    storage: storage,
+    whitelist: ['token']
+}
+
+
+const reducers = combineReducers({
+    AppPage: appReducer,
+    ProductPage: productReducer,
+    BasketPage: BasketReducer,
+    AuthPage: persistReducer(AuthReducerPersistConfig, AuthReducer)
+
+})
+
 
 
 const persistedReducer = persistReducer(reducersPersistConfig, reducers)

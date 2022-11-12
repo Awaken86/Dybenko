@@ -1,6 +1,6 @@
 import HomePage from './Components/HomePage/HomePage';
 import NavBar from './Components/NavBar/NavBar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 import SingleProductContainer from './Components/SingleProduct/SingleProductContainer';
 import Footer from './Components/Footer/Footer';
@@ -8,8 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import style from './App.module.css'
 import ProductsContainer from './Components/ProductsList/ProductsContainer';
 import Basket from './Components/Basket/Basket';
+import { initializeApp } from './redux/app-Reducer';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(initializeApp())
+    })
     return (
         <div className={style.body}>
             <div className={style.wrapper} >

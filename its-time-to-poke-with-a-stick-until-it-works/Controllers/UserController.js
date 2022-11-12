@@ -10,7 +10,7 @@ class UserController {
             res.status(200).json(userData)
         } catch (e) {
             res.status(500).json(e.message)
-            
+
         }
     }
 
@@ -20,6 +20,15 @@ class UserController {
             const loginData = await UserService.login(req.body)
             res.json(loginData)
             console.log(loginData)
+        } catch (e) {
+            res.status(500).json(e.message)
+        }
+    }
+    //авто-логинизация
+    async autoAuth(req, res) {
+        try {
+            const autoAuth = await UserService.autoAuth(req)
+            res.json(autoAuth)
         } catch (e) {
             res.status(500).json(e.message)
         }

@@ -32,5 +32,11 @@ export const UserAPI = {
             .then(response => {
                 return response.data;
             });
+    },
+    autoAuth(token) {
+        return instance.get(`/autoAuth`, { token })
+            .then(response => {
+                return response.data;
+            });
     }
 }

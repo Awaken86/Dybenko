@@ -31,8 +31,10 @@ export const actions = {
     setBasket: (newBasket) => ({ type: SET_BASKET, newBasket })
 }
 
-export const addToBasket = (Auth, selectedItem, countItem, basket) => {
-    return async (dispatch) => {
+export const addToBasket = (selectedItem, countItem) => {
+    return async (dispatch, getState) => {
+        const basket = (getState().BasketPage.basket)
+        const Auth = (getState().AuthPage.auth)
         let newSelectedItem = {
             id: selectedItem._id,
             price: selectedItem.price,
@@ -63,8 +65,10 @@ export const addToBasket = (Auth, selectedItem, countItem, basket) => {
 
     }
 }
-export const updateBasket = (Auth, basket, arrObj, NewCount, ChangeForPayment) => {
-    return async (dispatch) => {
+export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
+    return async (dispatch, getState) => {
+        const basket = (getState().BasketPage.basket)
+        const Auth = (getState().AuthPage.auth)
         let newBasket
         if (Auth === true) {
             //let basket = await productAPI.getBasket(basket,productId)

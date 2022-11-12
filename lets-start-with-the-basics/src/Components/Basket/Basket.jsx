@@ -11,12 +11,13 @@ import { FiTrash2 } from 'react-icons/fi';
 
 const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
-    console.log(basket)
+    const AuthState = useSelector((state) => state.AuthPage)
+    const Auth = useSelector((state) => state.AuthPage.Auth)
     const findId = basket?.find(obj => obj.id !== undefined)
     const dispatch = useDispatch()
-    const Auth = useSelector((state) => state.AuthPage.Auth)
+    console.log(AuthState)
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
-        dispatch(updateBasket(Auth, basket, arrObj, count, ChangeForPayment))
+        dispatch(updateBasket(arrObj, count, ChangeForPayment))
     }
     let allPrice = 0
     const sumPrice = (price, countItem) => {
@@ -38,12 +39,12 @@ const Basket = () => {
                                                 readOnly={true}
                                                 //checked={''}
                                                 onClick={() => {
-                                                    dispatch(updateBasket(Auth, basket, '', '', "AllChange"))
+                                                    dispatch(updateBasket('', '', "AllChange"))
                                                 }} />
                                         </Form.Group>
                                         <Nav className={style.delete}>
                                             <Button variant="light" onClick={() => {
-                                                dispatch(updateBasket(Auth, basket, '', '', "DeleteSelected"))
+                                                dispatch(updateBasket('', '', "DeleteSelected"))
                                             }}><FiTrash2 /></Button>
                                         </Nav>
                                     </Card.Body>

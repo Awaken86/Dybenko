@@ -11,14 +11,12 @@ const SingleProduct = (props) => {
     const dispatch = useDispatch()
     const [countItem, setCountItem] = useState(1);
     const selectedItem = useSelector((state) => state.ProductPage.selectedItem)
-    const Auth = 'false'
-    const basket = useSelector((state) => state.BasketPage.basket)
     useEffect(() => {
         const url = window.location.pathname
         dispatch(getOneProduct(url))
     })
     const addToBasketHandler = () => {
-        dispatch(addToBasket(Auth, selectedItem, countItem, basket))
+        dispatch(addToBasket(selectedItem, countItem))
     }
     //отнять
     const subtractFromQuantity = () => {
@@ -49,7 +47,7 @@ const SingleProduct = (props) => {
                         </Nav>
                         <Button className={style.button} variant="dark" onClick={() => { addToBasketHandler() }}>В корзину</Button>
                     </div>
-                    
+
                     <h5>Описание:</h5>
                     <span className={style.description}>{selectedItem.description}</span>
                 </Col>
