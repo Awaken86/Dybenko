@@ -13,7 +13,7 @@ const Basket = () => {
     const basket = useSelector((state) => state.BasketPage.basket)
     const AuthState = useSelector((state) => state.AuthPage)
     const Auth = useSelector((state) => state.AuthPage.Auth)
-    const findId = basket?.find(obj => obj.id !== undefined)
+    const basketLength = basket?.length
     const dispatch = useDispatch()
     console.log(AuthState)
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
@@ -25,7 +25,7 @@ const Basket = () => {
     }
     return (
         <Container className={style.Container}>
-            {findId ?
+            {basketLength > 0 ?
                 <>
                     <Nav className={style.NavBasketContainer}>
                         <Nav>

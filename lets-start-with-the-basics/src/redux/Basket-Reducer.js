@@ -1,6 +1,7 @@
 
 const ADD_TO_BASKET = 'ADD_TO_BASKET'
 const SET_BASKET = 'SET_BASKET'
+const CLEAN_OUT_BASKET = 'CLEAN_OUT_BASKET'
 
 let initialState = {
     basket: []
@@ -22,13 +23,20 @@ const BasketReducer = (state = initialState, action) => {
                 basket: action.newBasket
             }
         }
+        case CLEAN_OUT_BASKET: {
+            return {
+                ...state,
+                basket: {}
+            }
+        }
         default:
             return state;
     }
 }
 export const actions = {
     addToBasket: (selectedItem, basket) => ({ type: ADD_TO_BASKET, selectedItem, basket }),
-    setBasket: (newBasket) => ({ type: SET_BASKET, newBasket })
+    setBasket: (newBasket) => ({ type: SET_BASKET, newBasket }),
+    cleanOutBasket: () => ({ type: CLEAN_OUT_BASKET })
 }
 
 export const addToBasket = (selectedItem, countItem) => {
@@ -115,6 +123,10 @@ export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
         dispatch(actions.setBasket(newBasket))
     }
 }
-
+export const cleanOutBasket = () => {
+    return async (dispatch) => {
+        dispatch(actions.cleanOutBasket())
+    }
+}
 
 export default BasketReducer;

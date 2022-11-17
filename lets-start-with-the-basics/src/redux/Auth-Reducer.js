@@ -5,14 +5,12 @@ const SET_USER = 'SET_USER'
 const SET_TOKEN = 'SET_TOKEN'
 const SET_AUTH = 'SET_AUTH'
 const IS_LOADING = 'IS_LOADING'
+const LOGOUT = 'LOGOUT'
 
 let initialState = {
     showRegistration: false,
     Auth: false,
-    User: {
-        id: '',
-        email: ''
-    },
+    User: {},
     token: '',
     isLoading: false
 };
@@ -52,6 +50,14 @@ const AuthReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
         }
+        case LOGOUT: {
+            return {
+                ...state,
+                User: {},
+                token: '',
+                Auth: false
+            }
+        }
         default:
             return state;
     }
@@ -61,7 +67,8 @@ export const actions = {
     setUser: (user) => ({ type: SET_USER, user }),
     setToken: (token) => ({ type: SET_TOKEN, token }),
     setAuth: (Auth) => ({ type: SET_AUTH, Auth }),
-    isLoading: (isLoading) => ({ type: IS_LOADING, isLoading })
+    isLoading: (isLoading) => ({ type: IS_LOADING, isLoading }),
+    logout: () => ({ type: LOGOUT })
 }
 
 // регистрация
@@ -88,11 +95,11 @@ export const loginThunk = (UserData) => async (dispatch, getState) => {
     const response = await UserAPI.userLogin(UserData.email, UserData.password)
     if (response.resultCode === 0) {
         dispatch(actions.setUser(response.user))
-        dispatch(actions.setToken(response.token))
+        dispatch(actions.setAuth(!!response.token))
         //если rememberMe = true сохраняем токен
         const basket = (getState().BasketPage.basket) //получаем корзину
         // basket?.length > 0 && dispatch(addToBasket)
-        UserData.rememberMe && dispatch(actions.setToken(response.token))
+        UserData.rememberMe && dispatch(setTokenAndAuthThunk(response.token))
     } else {
         // dispatch(errorMessage(response.data.message))
         console.log('error loginThunk')
@@ -114,6 +121,9 @@ export const autoAuthThunk = () => async (dispatch, getState) => {
         dispatch(actions.isLoading(false))
         dispatch(setTokenAndAuthThunk(''))
     }
+}
+export const logoutThank = () => async (dispatch) => {
+    dispatch(actions.logout())
 }
 export const setTokenAndAuthThunk = (token) => async (dispatch) => {
     dispatch(actions.setToken(token))
