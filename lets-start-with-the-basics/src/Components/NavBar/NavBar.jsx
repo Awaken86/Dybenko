@@ -6,7 +6,7 @@ import ModalLogin from './Modal-Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { BiUser } from 'react-icons/bi';
 import { logoutThank } from '../../redux/Auth-Reducer';
-import { cleanOutBasket } from '../../redux/Basket-Reducer';
+import { cleanOutLocalBasket } from '../../redux/Basket-Reducer';
 
 
 const NavBar = () => {
@@ -16,7 +16,7 @@ const NavBar = () => {
     const count = basket?.length
     const LogoutHandler = () => {
         dispatch(logoutThank())
-        dispatch(cleanOutBasket())
+        dispatch(cleanOutLocalBasket())
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

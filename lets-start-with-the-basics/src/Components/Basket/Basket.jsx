@@ -15,7 +15,7 @@ const Basket = () => {
     const Auth = useSelector((state) => state.AuthPage.Auth)
     const basketLength = basket?.length
     const dispatch = useDispatch()
-    console.log(AuthState)
+    console.log(AuthState.User.basket)
     const updateBasketHandler = (arrObj, count, ChangeForPayment) => {
         dispatch(updateBasket(arrObj, count, ChangeForPayment))
     }

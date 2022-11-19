@@ -8,9 +8,9 @@ class UserService {
     //создание пользователя регистрация
     async create(userData) {
         const { email, password } = userData // получаем нужные данные из req
-        const candidate = await UserSchema.findOne({ email }) // ищем емаил в бд 
+        const findEmail = await UserSchema.findOne({ email }) // ищем емаил в бд 
         //если емаил уже есть в бд
-        if (candidate) {
+        if (findEmail) {
             return {
                 message: `Пользователь ${email} уже зарегистрирован`,
                 resultCode: 1
@@ -29,16 +29,13 @@ class UserService {
     // вход в аккаунт 
     async login(loginData) {
         const { email, password } = loginData
-
         const user = await UserSchema.findOne({ email }) // ищем пользователя с таким емайлом
-
         if (!user) {
             return {
                 message: `Пользователь ${email} не найден`,
                 resultCode: 1
             }
         }
-
         // сравниваем захешированный пароль с бд с введенным
         const isPassValid = bcrypt.compareSync(password, user.password)
         if (!isPassValid) {
@@ -47,7 +44,6 @@ class UserService {
                 resultCode: 1
             }
         }
-
         //формируем токен 2 аргумент ключ 3 аргумент время жизни ключа "bla_bla"- используется в auth.middleware 
         const token = jwt.sign({ id: user.id }, "bla_bla", { expiresIn: "48h" })
         return {
@@ -74,6 +70,16 @@ class UserService {
                     basket: user.basket,
                 }
             }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    async setBasket(data) {
+        try {
+            const user = await UserSchema.findOne(data.id) // ищем id пользователя в бд
+            user.basket = data.basket
+            await user.save()
+            return user.basket
         } catch (e) {
             console.log(e)
         }

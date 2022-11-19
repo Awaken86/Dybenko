@@ -15,5 +15,6 @@ router.delete('/product/:id', ProductController.delete)
 router.post('/createUser', UserController.create)
 router.post('/login', UserController.login)
 router.get('/autoAuth', authMiddleware, UserController.autoAuth)
+router.put('/setBasket', UserController.setBasket)
 
 export default router

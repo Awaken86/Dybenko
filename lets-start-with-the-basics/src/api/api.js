@@ -9,9 +9,7 @@ export const productAPI = {
         return instance.get(`/product?type=${type}&color=${color}&maxSelected=${selectedPrice.maxPrice}&minSelected=${selectedPrice.minPrice}`)
             .then(response => {
                 return response.data;
-
             });
-
     },
     getOneProduct(url) {
         return instance.get(url)
@@ -35,6 +33,13 @@ export const UserAPI = {
     },
     autoAuth(token) {
         return instance.get(`/autoAuth`, { headers: { Authorization: `Bearer ${token}` } })
+            .then(response => {
+                return response.data;
+            });
+    },
+    setBasketUser(basket, userId) {
+        console.log(basket, userId)
+        return instance.put(`/setBasket`, { basket, userId })
             .then(response => {
                 return response.data;
             });
