@@ -39,6 +39,14 @@ class UserController {
             res.status(500).json(e.message)
         }
     }
+    async syncLocalAndServerBasketUser(req, res) {
+        try {
+            const basket = await UserService.syncLocalAndServerBasketUser(req.body)
+            res.json(basket)
+        } catch (e) {
+            res.status(500).json(e.message)
+        }
+    }
 }
 
 export default new UserController()

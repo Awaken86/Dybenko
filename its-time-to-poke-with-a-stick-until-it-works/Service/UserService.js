@@ -84,6 +84,29 @@ class UserService {
             console.log(e)
         }
     }
+    async syncLocalAndServerBasketUser(data) {
+        try {
+            const user = await UserSchema.findOne(data.id) // ищем id пользователя в бд
+            if (toString(data.basket) !== toString(user.basket)) {
+                data.basket.forEach(elem => {
+                    user.basket.filter((obj) => {
+                        if (obj.id === elem.id) {
+                            obj.countItem += elem.countItem
+                        } else {
+                            user.basket.push(obj)
+                        }
+                    })
+                });
+            }
+            await user.save()
+            return {
+                resultCode: 0,
+                basket: user.basket
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
 
 export default new UserService();

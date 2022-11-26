@@ -66,7 +66,7 @@ export const addToBasket = (selectedItem, countItem) => {
                 const response = await UserAPI.setBasketUser(newBasket, userId)
                 newBasket = response
             }
-            dispatch(actions.setBasket(newBasket))
+            dispatch(setBasketThunk(newBasket))
         }
     }
 }
@@ -117,6 +117,16 @@ export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
             const response = await UserAPI.setBasketUser(newBasket, userId)
             newBasket = response
         }
+        dispatch(setBasketThunk(newBasket))
+    }
+}
+export const changeForPayment = (forPayment) => {
+    return async (dispatch) => {
+
+    }
+}
+export const setBasketThunk = (newBasket) => {
+    return async (dispatch) => {
         dispatch(actions.setBasket(newBasket))
     }
 }

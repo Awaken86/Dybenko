@@ -1,4 +1,5 @@
 import { UserAPI } from "../api/api";
+import { setBasketThunk } from "./Basket-Reducer";
 
 const SET_SHOW_REGISTRATION = 'SET_SHOW_REGISTRATION'
 const SET_USER = 'SET_USER'
@@ -95,10 +96,9 @@ export const loginThunk = (UserData) => async (dispatch, getState) => {
     const response = await UserAPI.userLogin(UserData.email, UserData.password)
     if (response.resultCode === 0) {
         dispatch(actions.setUser(response.user))
+        dispatch(syncLocalAndServerBasketThunk())
         dispatch(actions.setAuth(!!response.token))
         //если rememberMe = true сохраняем токен
-        const basket = (getState().BasketPage.basket) //получаем корзину
-        // basket?.length > 0 && dispatch(addToBasket)
         UserData.rememberMe && dispatch(setTokenAndAuthThunk(response.token))
     } else {
         // dispatch(errorMessage(response.data.message))
@@ -113,6 +113,7 @@ export const autoAuthThunk = () => async (dispatch, getState) => {
             dispatch(actions.isLoading(true))
             const data = await UserAPI.autoAuth(token)
             dispatch(actions.setUser(data.user))
+            dispatch(syncLocalAndServerBasketThunk())
             dispatch(setTokenAndAuthThunk(data.token))
             dispatch(actions.isLoading(false))
             console.log('Authorization acces')
@@ -120,6 +121,17 @@ export const autoAuthThunk = () => async (dispatch, getState) => {
     } catch (e) {
         dispatch(actions.isLoading(false))
         dispatch(setTokenAndAuthThunk(''))
+    }
+}
+export const syncLocalAndServerBasketThunk = () => async (dispatch, getState) => {
+    const basket = (getState().BasketPage.basket)
+    const userId = (getState().AuthPage.User.id)
+    const response = await UserAPI.syncLocalAndServerBasketUser(basket, userId)
+    if (response.resultCode === 0) {
+        dispatch(setBasketThunk(response.basket))
+    } else {
+        // dispatch(errorMessage(response.data.message))
+        console.log('error syncLocalAndServerBasketThunk')
     }
 }
 export const logoutThank = () => async (dispatch) => {

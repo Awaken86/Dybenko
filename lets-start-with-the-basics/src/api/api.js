@@ -4,7 +4,6 @@ const instance = axios.create({
     baseURL: 'http://localhost:27017/api'
 })
 export const productAPI = {
-
     getProduct(type, color, selectedPrice) {
         return instance.get(`/product?type=${type}&color=${color}&maxSelected=${selectedPrice.maxPrice}&minSelected=${selectedPrice.minPrice}`)
             .then(response => {
@@ -38,8 +37,13 @@ export const UserAPI = {
             });
     },
     setBasketUser(basket, userId) {
-        console.log(basket, userId)
         return instance.put(`/setBasket`, { basket, userId })
+            .then(response => {
+                return response.data;
+            });
+    },
+    syncLocalAndServerBasketUser(basket, userId) {
+        return instance.put(`/syncLocalAndServerBasketUser`, { basket, userId })
             .then(response => {
                 return response.data;
             });

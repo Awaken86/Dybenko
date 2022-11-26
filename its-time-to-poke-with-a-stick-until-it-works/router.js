@@ -11,10 +11,10 @@ router.get('/product/:id', ProductController.getOne)
 router.put('/product/:id', ProductController.update)
 router.delete('/product/:id', ProductController.delete)
 
-
 router.post('/createUser', UserController.create)
 router.post('/login', UserController.login)
 router.get('/autoAuth', authMiddleware, UserController.autoAuth)
 router.put('/setBasket', UserController.setBasket)
+router.put('/syncLocalAndServerBasketUser', UserController.syncLocalAndServerBasketUser)
 
 export default router
