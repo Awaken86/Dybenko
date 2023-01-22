@@ -93,7 +93,7 @@ class UserService {
                         if (obj.id === elem.id) {
                             obj.countItem += elem.countItem
                         } else {
-                            user.basket.push(obj)
+                            user.basket.unshift(obj)
                         }
                     })
                 });

@@ -10,19 +10,24 @@ import appReducer from "./app-Reducer";
 const reducersPersistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['BasketPage']
+    whitelist: ['']
 }
 const AuthReducerPersistConfig = {
     key: 'auth',
     storage: storage,
     whitelist: ['token']
 }
+const BasketReducerPersistConfig = {
+    key: 'basket',
+    storage: storage,
+    whitelist: ['basket']
+}
 
 
 const reducers = combineReducers({
     AppPage: appReducer,
     ProductPage: productReducer,
-    BasketPage: BasketReducer,
+    BasketPage: persistReducer(BasketReducerPersistConfig, BasketReducer),
     AuthPage: persistReducer(AuthReducerPersistConfig, AuthReducer)
 
 })

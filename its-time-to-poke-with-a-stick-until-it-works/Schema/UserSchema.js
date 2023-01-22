@@ -10,7 +10,8 @@ const User = new mongoose.Schema({
         count: { type: Number },
         price: { type: Number },
         picture: { type: String },
-        title: { type: String } 
+        title: { type: String },
+        forPayment: { type: Boolean }
     }]
 })
 

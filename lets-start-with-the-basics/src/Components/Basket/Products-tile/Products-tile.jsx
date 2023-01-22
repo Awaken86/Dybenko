@@ -17,6 +17,7 @@ const ProductsTile = (props) => {
     }
     //удалить
     const deleteProduct = () => {
+        debugger
         props.updateBasket(props.arrObj, null)
     }
     //добавить к продуктам для оплаты

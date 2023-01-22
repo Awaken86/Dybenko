@@ -4,7 +4,8 @@ const SET_BASKET = 'SET_BASKET'
 const CLEAN_OUT_LOCAL_BASKET = 'CLEAN_OUT_LOCAL_BASKET'
 
 let initialState = {
-    basket: []
+    basket: [],
+    forPaymentBasket: []
 }
 
 const BasketReducer = (state = initialState, action) => {
@@ -120,11 +121,7 @@ export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
         dispatch(setBasketThunk(newBasket))
     }
 }
-export const changeForPayment = (forPayment) => {
-    return async (dispatch) => {
 
-    }
-}
 export const setBasketThunk = (newBasket) => {
     return async (dispatch) => {
         dispatch(actions.setBasket(newBasket))
