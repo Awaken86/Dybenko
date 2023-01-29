@@ -116,7 +116,7 @@ export const autoAuthThunk = () => async (dispatch, getState) => {
             dispatch(syncLocalAndServerBasketThunk())
             dispatch(setTokenAndAuthThunk(data.token))
             dispatch(actions.isLoading(false))
-            console.log('Authorization acces')
+            console.log('Authorization access')
         }
     } catch (e) {
         dispatch(actions.isLoading(false))
