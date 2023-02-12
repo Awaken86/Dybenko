@@ -3,26 +3,26 @@ import { Button, Card, Container, Form, Nav } from "react-bootstrap"
 import { FiTrash2 } from "react-icons/fi"
 import style from './Products-tile.module.css'
 const ProductsTile = (props) => {
+    const product = props.product
     //отнять
     const subtractFromQuantity = () => {
-        if (props.arrObj.countItem === 1) {
+        if (product.countItem === 1) {
             return false
         } else {
-            props.updateBasket(props.arrObj, props.arrObj.countItem - 1)
+            props.changeCount(product, -1)
         }
     }
     //прибавить
     const addToQuantity = () => {
-        props.updateBasket(props.arrObj, props.arrObj.countItem + 1)
+        props.changeCount(product, 1)
     }
     //удалить
     const deleteProduct = () => {
-        debugger
-        props.updateBasket(props.arrObj, null)
+        props.deleteItem(product)
     }
     //добавить к продуктам для оплаты
     const addTofPaymentBasket = () => {
-        props.updateBasket(props.arrObj, '', "true")
+        props.updateForPayment(product,"true")
     }
     return (
         <Container>
@@ -33,26 +33,26 @@ const ProductsTile = (props) => {
                     >
                         <Form.Check type="checkbox"
                             readOnly={true}
-                            checked={props.arrObj.forPayment}
+                            checked={product.forPayment}
                             onClick={() => {
                                 addTofPaymentBasket()
                             }} />
                     </Form.Group>
-                    <Card.Img className={style.imgCard} variant="top" src={props.arrObj.picture} />
+                    <Card.Img className={style.imgCard} variant="top" src={product.picture} />
                     <Card.Title >
                         <Nav className={style.title}>
-                            {props.arrObj.title}
+                            {product.title}
                         </Nav>
                         <Nav className={style.price}>
-                            {props.arrObj.price} руб.
+                            {product.price} руб.
                         </Nav>
                     </Card.Title>
                     <Nav className={style.counter}>
-                        {props.arrObj.countItem === 1 ?
+                        {product.countItem === 1 ?
                             <Button variant="light" onClick={deleteProduct}><FiTrash2 /></Button> :
                             <Button variant="light" onClick={subtractFromQuantity}>-</Button>
                         }
-                        <span>{props.arrObj.countItem}</span>
+                        <span>{product.countItem}</span>
                         <Button variant="light" onClick={addToQuantity}>+</Button>
                     </Nav>
                 </Card.Body>

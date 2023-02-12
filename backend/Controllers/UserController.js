@@ -20,6 +20,7 @@ class UserController {
             res.json(loginData)
         } catch (e) {
             res.status(500).json(e.message)
+            
         }
     }
     //авто-логинизация

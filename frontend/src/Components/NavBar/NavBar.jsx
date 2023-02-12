@@ -21,7 +21,7 @@ const NavBar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container className={style.containerNavBar}>
-                <Navbar.Brand as={Link} to=''>Shota u Ashota</Navbar.Brand>
+                <Navbar.Brand as={Link} to=''>Dybenko</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

@@ -55,7 +55,7 @@ const Footer = () => {
             </Container>
             <Container fluid style={{ backgroundColor: "#212529", color: "#fff" }}>
                 <Container style={{ display: "flex", justifyContent: "center", padding: "5px" }}>
-                    <Nav >Shota u ashota</Nav>
+                    <Nav >Dybenko</Nav>
                 </Container>
             </Container>
         </Nav>

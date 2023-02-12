@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Container, Nav } from 'react-bootstrap';
+import { Button, Card, Container, Nav, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import style from './ProductsList.module.css';
 import asd from '../../ComItems/mp3/haushnike&zaradki.mp3'
@@ -16,15 +16,15 @@ const ProductsList = (props) => {
     const maxPrice = useSelector((state) => state.ProductPage.maxPrice)
     const minPrice = useSelector((state) => state.ProductPage.minPrice)
     const selectedPrice = useSelector((state) => state.ProductPage.selectedPrice)
+    console.log("render")
     useEffect(() => {
-        dispatch(getProduct(actualType, color, selectedPrice))
-    }, [])
+        dispatch(getProduct(actualType))
+    })
     useEffect(() => {
         dispatch(getProduct(actualType, color, selectedPrice))
     }, [actualType, color, selectedPrice])
     useEffect(() => {
         filterCleaner()
-
     }, [actualType])
     const setSelectedPriceHandler = (selectedPrice) => {
         dispatch(actions.setSelectedPrice(selectedPrice))
@@ -47,20 +47,17 @@ const ProductsList = (props) => {
                 {/*<ReactAudioPlayer src={asd} autoPlay volume={0.01}/>*/}
 
                 {
-                    product.map(p => <Card className={style.card} key={p._id}>
-                        <Nav as={Link} to={`/product/${p._id}`}>
-                            <Card.Img className={style.imgCard} variant="top" src={p.picture} />
-                        </Nav>
-                        <Card.Body>
-                            <Card.Title className={style.title}>{p.title}</Card.Title>
-                            <Card.Text className={style.title}>
-                                {p.description}
-                            </Card.Text>
-                            <Button as={Link} to={`/product/${p._id}`} variant="primary">{p.price}p</Button>
-                        </Card.Body>
-                    </Card>)
+                    product.map(p =>
+                        <Card className={style.card} key={p._id} as={Link} to={`/product/${p._id}`}>
+                            <Nav >
+                                <Card.Img className={style.imgCard} variant="top" src={p.picture} />
+                            </Nav>
+                            <Card.Body>
+                                <Card.Title className={style.title}>{p.title}</Card.Title>
+                                <Card.Title className={style.price}>{p.price}p</Card.Title>
+                            </Card.Body>
+                        </Card>)
                 }
-
 
             </Container>
         </>

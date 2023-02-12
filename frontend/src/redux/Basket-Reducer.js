@@ -5,11 +5,12 @@ const CLEAN_OUT_LOCAL_BASKET = 'CLEAN_OUT_LOCAL_BASKET'
 
 let initialState = {
     basket: [],
-    forPaymentBasket: []
+    selectedAllProducts: false
 }
 
 const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case SET_BASKET: {
             return {
                 ...state,
@@ -36,7 +37,7 @@ export const addToBasket = (selectedItem, countItem) => {
         const basket = (getState().BasketPage.basket)
         const Auth = (getState().AuthPage.Auth)
         const userId = (getState().AuthPage.User.id)
-        let newSelectedItem = {
+        let basketItem = {
             id: selectedItem._id,
             price: selectedItem.price,
             title: selectedItem.title,
@@ -44,25 +45,14 @@ export const addToBasket = (selectedItem, countItem) => {
             countItem: countItem,
             forPayment: false
         }
-        let NewCount
-        let findDuplicate = basket?.filter((obj) => {
-            if (obj.id === newSelectedItem.id) {
-                NewCount = obj.countItem + countItem
+        let duplicate = basket?.filter((obj) => {
+            if (obj.id === basketItem.id) {
+                dispatch(changeCountThunk(basketItem, countItem))
                 return obj
-            } else {
-                return null
             }
         })
-        if (findDuplicate?.length > 0) {
-            dispatch(updateBasket(basket, newSelectedItem, NewCount))
-        } else {
-            let newBasket
-            if (basket?.length > 0) {
-                newBasket = [newSelectedItem, ...basket]
-            }
-            else {
-                newBasket = [newSelectedItem]
-            }
+        if (!duplicate?.length) {
+            let newBasket = [basketItem, ...basket]
             if (Auth) {
                 const response = await UserAPI.setBasketUser(newBasket, userId)
                 newBasket = response
@@ -71,16 +61,19 @@ export const addToBasket = (selectedItem, countItem) => {
         }
     }
 }
-export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
+export const updateForPayment = (arrObj, ChangeForPayment) => {
     return async (dispatch, getState) => {
         const basket = (getState().BasketPage.basket)
+        const selectedAllProducts = (getState().BasketPage.selectedAllProducts)
         const Auth = (getState().AuthPage.Auth)
         const userId = (getState().AuthPage.User.id)
         let newBasket
         //изменить forPayment у всех товаров
         if (ChangeForPayment === "AllChange") {
             let changeForPayment = basket.filter((obj) => {
-                obj.forPayment = !obj.forPayment
+                selectedAllProducts ?
+                    obj.forPayment = true :
+                    obj.forPayment = false
                 return obj
             })
             newBasket = changeForPayment
@@ -103,17 +96,6 @@ export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
             })
             newBasket = changeForPayment
         }
-        //изменить количество
-        if (NewCount === null || NewCount > 0) {
-            //dispatch(actions.addToBasket(selectedItem, countItem))
-            let FindAndChangeCount = basket.filter((obj) => {
-                if (obj.id === arrObj.id) {
-                    obj.countItem = NewCount
-                }
-                return obj.countItem !== null
-            })
-            newBasket = FindAndChangeCount
-        }
         if (Auth) {
             const response = await UserAPI.setBasketUser(newBasket, userId)
             newBasket = response
@@ -121,8 +103,33 @@ export const updateBasket = (arrObj, NewCount, ChangeForPayment) => {
         dispatch(setBasketThunk(newBasket))
     }
 }
-
+export const changeCountThunk = (basketItem, count) => {
+    return async (dispatch, getState) => {
+        const basket = (getState().BasketPage.basket)
+        let updatedBasket = basket.filter((obj) => {
+            if (obj.id === basketItem.id) {
+                obj.countItem += count
+            }
+            return obj
+        })
+        dispatch(actions.setBasket(updatedBasket))
+    }
+}
+export const deleteItemThunk = (basketItem) => {
+    return async (dispatch, getState) => {
+        const basket = (getState().BasketPage.basket)
+        let updatedBasket = basket.filter((obj) => {
+            return obj.id !== basketItem.id
+        })
+        dispatch(actions.setBasket(updatedBasket))
+    }
+}
 export const setBasketThunk = (newBasket) => {
+    return async (dispatch) => {
+        dispatch(actions.setBasket(newBasket))
+    }
+}
+export const selectedAllProductsThunk = (newBasket) => {
     return async (dispatch) => {
         dispatch(actions.setBasket(newBasket))
     }

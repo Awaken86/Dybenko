@@ -1,5 +1,4 @@
 FROM node
-
 # создание директории приложения
 WORKDIR /backend
 
